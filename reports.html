@@ -4,26 +4,114 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <title>Reports Dashboard</title>
+
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Data File -->
     <script src="../HumanResourceSystem/JS/Data.js"></script>
 
-    <title>Reports</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background: #f4f4f4;
+      }
+
+      .card {
+        background: white;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .progress-container {
+        width: 100%;
+        background: #ddd;
+        border-radius: 20px;
+        overflow: hidden;
+        margin-top: 10px;
+      }
+
+      .progress-bar {
+        height: 25px;
+        width: 0%;
+        background: green;
+        color: white;
+        text-align: center;
+        line-height: 25px;
+      }
+
+      .departmentCounts div {
+        margin: 8px 0;
+      }
+
+      canvas {
+        width: 400px !important;
+        height: 400px !important;
+        background: white;
+        padding: 10px;
+        border-radius: 10px;
+      }
+
+      .chart-row {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .chart-card {
+        width: 450px;
+      }
+    </style>
   </head>
 
   <body>
-    <div class="totalEmployees">Total employees : <span></span></div>
+    <div class="card totalEmployees">Total employees : <span>0</span></div>
 
-    <div class="presentEmployees">Total present employees : <span></span></div>
+    <div class="card presentEmployees">
+      Total present employees : <span>0</span>
+    </div>
 
-    <div class="absentEmployees">Total absent employees : <span></span></div>
+    <div class="card absentEmployees">
+      Total absent employees : <span>0</span>
+    </div>
 
-    <div class="employeesOnLeave">Total employees on leave : <span></span></div>
-    <h2>Department-wise Employee Count</h2>
+    <div class="card employeesOnLeave">
+      Total employees on leave : <span>0</span>
+    </div>
 
-    <div class="departmentCounts"></div>
+    <div class="card attendancePercentage">
+      Attendance Percentage : <span>0%</span>
+
+      <div class="progress-container">
+        <div class="progress-bar"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Department-wise Employee Count</h2>
+      <div class="departmentCounts"></div>
+    </div>
+
+    <div class="chart-row">
+      <div class="card chart-card">
+        <h2>Attendance Pie Chart</h2>
+        <canvas id="pieChart"></canvas>
+      </div>
+
+      <div class="card chart-card">
+        <h2>Department Employee Bar Chart</h2>
+        <canvas id="barChart"></canvas>
+      </div>
+    </div>
+
     <script>
       // Fetching data from localStorage
 
@@ -45,16 +133,35 @@
       const today = new Date();
       let presentDate = today.toISOString().split("T")[0];
 
+      let todayAttendance = null;
+
+      // Animated Counter
+      function animateCounter(selector, target) {
+        $({ count: 0 }).animate(
+          { count: target },
+          {
+            duration: 1000,
+            step: function () {
+              $(selector).text(Math.floor(this.count));
+            },
+            complete: function () {
+              $(selector).text(target);
+            },
+          },
+        );
+      }
+
       // Total Employees
       function totalemps() {
-        $(".totalEmployees span").html(storedEmployees.length);
+        animateCounter(".totalEmployees span", storedEmployees.length);
       }
 
       // Present Employees
       function totalpresent() {
         storedAttendance.forEach((element) => {
           if (element.date == presentDate) {
-            $(".presentEmployees span").html(element.present);
+            todayAttendance = element;
+            animateCounter(".presentEmployees span", element.present);
           }
         });
       }
@@ -63,7 +170,7 @@
       function totalabsent() {
         storedAttendance.forEach((element) => {
           if (element.date == presentDate) {
-            $(".absentEmployees span").html(element.absent);
+            animateCounter(".absentEmployees span", element.absent);
           }
         });
       }
@@ -82,21 +189,97 @@
           }
         });
 
-        $(".employeesOnLeave span").html(counter);
+        animateCounter(".employeesOnLeave span", counter);
       }
 
+      // Department-wise Count
       function departmentWiseCount() {
         let output = "";
 
         storedDepartments.forEach((dept) => {
           output += `
-      <div>
-        <b>${dept.deptName}</b> : ${dept.employeeCount}
-      </div>
-    `;
+            <div>
+              <b>${dept.deptName}</b> : ${dept.employeeCount}
+            </div>
+          `;
         });
 
         $(".departmentCounts").html(output);
+      }
+
+      // Attendance Percentage + Progress Bar
+      function attendancePercentage() {
+        if (todayAttendance) {
+          let percentage = (
+            (todayAttendance.present / todayAttendance.totalEmployees) *
+            100
+          ).toFixed(0);
+
+          $(".attendancePercentage span").text(percentage + "%");
+
+          $(".progress-bar").animate(
+            {
+              width: percentage + "%",
+            },
+            1000,
+          );
+
+          $(".progress-bar").text(percentage + "%");
+        }
+      }
+
+      // Pie Chart
+      function createPieChart() {
+        if (!todayAttendance) return;
+
+        const ctx = document.getElementById("pieChart");
+
+        new Chart(ctx, {
+          type: "pie",
+          data: {
+            labels: ["Present", "Absent", "On Leave"],
+            datasets: [
+              {
+                data: [
+                  todayAttendance.present,
+                  todayAttendance.absent,
+                  todayAttendance.onLeave,
+                ],
+                backgroundColor: ["green", "red", "orange"],
+              },
+            ],
+          },
+        });
+      }
+
+      // Bar Chart
+      function createBarChart() {
+        const ctx = document.getElementById("barChart");
+
+        let deptNames = [];
+        let empCounts = [];
+
+        storedDepartments.forEach((dept) => {
+          deptNames.push(dept.deptName);
+          empCounts.push(dept.employeeCount);
+        });
+
+        new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: deptNames,
+            datasets: [
+              {
+                label: "Employees",
+                data: empCounts,
+                backgroundColor: "blue",
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+          },
+        });
       }
 
       // Calling functions
@@ -105,6 +288,9 @@
       totalabsent();
       empOnLeave();
       departmentWiseCount();
+      attendancePercentage();
+      createPieChart();
+      createBarChart();
     </script>
   </body>
 </html>

@@ -1,0 +1,202 @@
+const credentials = [
+  {
+    emptype: "hr",
+    password: "hr123",
+  },
+  {
+    emptype: "general",
+    password: "general123",
+  },
+];
+
+const employees = [
+  {
+    empId: "EMP101",
+    name: "Arjun Sharma",
+    email: "arjun.s@company.com",
+    mobile: "9876543210",
+    gender: "Male",
+    department: "Development",
+    designation: "Senior Developer",
+    salary: 85000,
+    doj: "2023-01-15",
+    address: "123 Tech Park, Hyderabad",
+    photo: "images/emp101.jpg",
+    attendanceStatus: "Present",
+  },
+  {
+    empId: "EMP102",
+    name: "Sarah Jenkins",
+    email: "s.jenkins@company.com",
+    mobile: "9876543211",
+    gender: "Female",
+    department: "Human Resources",
+    designation: "HR Manager",
+    salary: 75000,
+    doj: "2022-11-10",
+    address: "456 Oak Street, Bangalore",
+    photo: "images/emp102.jpg",
+    attendanceStatus: "Absent",
+  },
+  {
+    empId: "EMP103",
+    name: "Rohit Verma",
+    email: "rohit.v@company.com",
+    mobile: "9876543212",
+    gender: "Male",
+    department: "Testing",
+    designation: "QA Engineer",
+    salary: 60000,
+    doj: "2023-03-18",
+    address: "Whitefield, Bangalore",
+    photo: "images/emp103.jpg",
+    attendanceStatus: "Present",
+  },
+  {
+    empId: "EMP104",
+    name: "Priya Rai",
+    email: "priya.r@company.com",
+    mobile: "9876543213",
+    gender: "Female",
+    department: "Testing",
+    designation: "Test Lead",
+    salary: 70000,
+    doj: "2022-09-12",
+    address: "Gachibowli, Hyderabad",
+    photo: "images/emp104.jpg",
+    attendanceStatus: "On Leave",
+  },
+  {
+    empId: "EMP105",
+    name: "Karan Mehta",
+    email: "karan.m@company.com",
+    mobile: "9876543214",
+    gender: "Male",
+    department: "Development",
+    designation: "Frontend Developer",
+    salary: 65000,
+    doj: "2024-01-05",
+    address: "Pune IT Park",
+    photo: "images/emp105.jpg",
+    attendanceStatus: "Present",
+  },
+  {
+    empId: "EMP106",
+    name: "Neha Kapoor",
+    email: "neha.k@company.com",
+    mobile: "9876543215",
+    gender: "Female",
+    department: "Finance",
+    designation: "Accountant",
+    salary: 55000,
+    doj: "2023-07-20",
+    address: "Mumbai Central",
+    photo: "images/emp106.jpg",
+    attendanceStatus: "Absent",
+  },
+];
+const departments = [
+  {
+    deptName: "Human Resources",
+    deptHead: "Sarah Jenkins",
+    employeeCount: 1,
+    extension: "101",
+    type: "Administrative",
+  },
+  {
+    deptName: "Development",
+    deptHead: "Arjun Sharma",
+    employeeCount: 2,
+    extension: "202",
+    type: "Technical",
+  },
+  {
+    deptName: "Testing",
+    deptHead: "Priya Rai",
+    employeeCount: 2,
+    extension: "303",
+    type: "Technical",
+  },
+  {
+    deptName: "Finance",
+    deptHead: "Neha Kapoor",
+    employeeCount: 1,
+    extension: "404",
+    type: "Administrative",
+  },
+  {
+    deptName: "Marketing",
+    deptHead: "TBD",
+    employeeCount: 0,
+    extension: "505",
+    type: "Creative",
+  },
+];
+const leaves = [
+  {
+    leaveId: "L-001",
+    empId: "EMP101",
+    empName: "Arjun Sharma",
+    leaveType: "Sick Leave",
+    fromDate: "2024-05-20",
+    toDate: "2024-05-22",
+    reason: "Severe flu",
+    status: "Approved",
+    totalDays: 3,
+  },
+  {
+    leaveId: "L-002",
+    empId: "EMP104",
+    empName: "Priya Rai",
+    leaveType: "Casual Leave",
+    fromDate: "2024-05-21",
+    toDate: "2024-05-23",
+    reason: "Personal work",
+    status: "Approved",
+    totalDays: 3,
+  },
+  {
+    leaveId: "L-003",
+    empId: "EMP106",
+    empName: "Neha Kapoor",
+    leaveType: "Earned Leave",
+    fromDate: "2024-06-01",
+    toDate: "2024-06-05",
+    reason: "Family trip",
+    status: "Pending",
+    totalDays: 5,
+  },
+];
+const attendance = [
+  {
+    date: "2024-05-23",
+    totalEmployees: 6,
+    present: 3,
+    absent: 2,
+    onLeave: 1,
+  },
+  {
+    date: "2024-05-22",
+    totalEmployees: 6,
+    present: 4,
+    absent: 1,
+    onLeave: 1,
+  },
+  {
+    date: "2024-05-21",
+    totalEmployees: 6,
+    present: 5,
+    absent: 0,
+    onLeave: 1,
+  },
+];
+
+// -- saving all the data into local storage
+localStorage.setItem("employees", JSON.stringify(employees));
+localStorage.setItem("departments", JSON.stringify(departments));
+localStorage.setItem("leaves", JSON.stringify(leaves));
+localStorage.setItem("attendance", JSON.stringify(attendance));
+
+
+
+

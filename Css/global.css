@@ -104,7 +104,7 @@ input, select, textarea { font-family: inherit; }
   --radius-full: 9999px;
 
   /* Typography */
-  --font-display: 'Syne', sans-serif;
+  --font-display: 'Roboto', sans-serif;
   --font-body:    'DM Sans', sans-serif;
 
   --text-xs:   0.75rem;

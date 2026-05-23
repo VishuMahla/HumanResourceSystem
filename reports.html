@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../HumanResourceSystem/JS/Data.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- Total Employees  
+• Present Employees  
+• Absent Employees  
+• Employees on Leave  
+• Department-wise Employee Count  -->
+
+    <div class="totalEmployees">total employees : <span></span></div>
+    <div class="presentEmployees">total present employees : <span></span></div>
+    <div class="absentEmployees">total absent employees :<span></span></div>
+    <div class="employeesOnLeave">total employees on leave :<span></span></div>
+
+    <script>
+      // --- Fetching them individually ---
+      let storedEmployees = JSON.parse(
+        localStorage.getItem("employees") || "[]",
+      );
+      let storedDepartments = JSON.parse(
+        localStorage.getItem("departments") || "[]",
+      );
+      let storedLeaves = JSON.parse(localStorage.getItem("leaves") || "[]");
+      let storedAttendance = JSON.parse(
+        localStorage.getItem("attendance") || "[]",
+      );
+
+      // displaying total employees
+
+      function totalemps() {
+        // $(".totalEmployees").html(.length);
+      }
+    </script>
+  </body>
+</html>

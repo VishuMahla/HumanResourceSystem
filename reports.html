@@ -332,6 +332,15 @@
       const today = new Date();
       let presentDate = today.toISOString().split("T")[0];
 
+      // Fallback: If no data exists for today, use the most recent date available in storedAttendance
+      if (storedAttendance.length > 0) {
+        const hasToday = storedAttendance.some(a => a.date === presentDate);
+        if (!hasToday) {
+          const sorted = [...storedAttendance].sort((a, b) => new Date(b.date) - new Date(a.date));
+          presentDate = sorted[0].date;
+        }
+      }
+
       let todayAttendance = null;
 
       // Animated Counter

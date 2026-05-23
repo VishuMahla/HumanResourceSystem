@@ -1,0 +1,283 @@
+/* ============================================================
+   employee.css — Employee Registration Module Styles
+   Link AFTER global.css:
+     <link rel="stylesheet" href="css/global.css">
+     <link rel="stylesheet" href="css/employee.css">
+   ============================================================ */
+
+/* ─── Form Layout ────────────────────────────────────────────── */
+.employee-form-wrapper {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .employee-form-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── Profile Photo Panel ────────────────────────────────────── */
+.profile-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+  text-align: center;
+  position: sticky;
+  top: calc(var(--navbar-height) + var(--space-6));
+}
+
+.photo-upload-area {
+  width: 150px;
+  height: 150px;
+  border-radius: var(--radius-full);
+  border: 3px dashed var(--border-strong);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-base);
+  overflow: hidden;
+  position: relative;
+  background: var(--bg-surface-2);
+}
+
+.photo-upload-area:hover {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+
+.photo-upload-area img#photoPreview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+  border-radius: var(--radius-full);
+}
+
+.photo-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  pointer-events: none;
+}
+
+.photo-placeholder .upload-icon {
+  font-size: 2.5rem;
+  color: var(--text-muted);
+}
+
+.photo-placeholder p {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.photo-upload-area:hover .upload-icon { color: var(--primary); }
+
+.profile-panel .employee-id-display {
+  background: var(--bg-surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-5);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 1px;
+  width: 100%;
+}
+
+.profile-panel .profile-note {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ─── Form Card ──────────────────────────────────────────────── */
+.form-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.form-section {
+  padding: var(--space-6);
+  border-bottom: 1px solid var(--border);
+}
+
+.form-section:last-child { border-bottom: none; }
+
+.form-section-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px dashed var(--border);
+}
+
+.form-section-title .section-icon {
+  width: 32px; height: 32px;
+  background: var(--primary-light);
+  color: var(--primary);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-base);
+  flex-shrink: 0;
+}
+
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4) var(--space-5);
+}
+
+.form-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-4) var(--space-5);
+}
+
+.form-full { grid-column: 1 / -1; }
+
+@media (max-width: 600px) {
+  .form-grid-2,
+  .form-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── Form Actions ───────────────────────────────────────────── */
+.form-actions {
+  padding: var(--space-5) var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  background: var(--bg-surface-2);
+  border-top: 1px solid var(--border);
+}
+
+/* ─── Select Wrapper (custom arrow) ─────────────────────────── */
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper::after {
+  content: '▾';
+  position: absolute;
+  right: var(--space-4);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+  font-size: var(--text-sm);
+}
+
+/* ─── Salary Input with prefix ───────────────────────────────── */
+.input-prefix-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-prefix {
+  position: absolute;
+  left: var(--space-4);
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  pointer-events: none;
+}
+
+.input-prefix-wrapper .form-control {
+  padding-left: 32px;
+}
+
+/* ─── Character Counter ──────────────────────────────────────── */
+.char-counter {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-align: right;
+  margin-top: 2px;
+}
+
+.char-counter.warn { color: var(--warning); }
+.char-counter.over { color: var(--danger); }
+
+/* ─── Form Progress Indicator ────────────────────────────────── */
+.form-progress-bar {
+  height: 4px;
+  background: var(--border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: var(--space-6);
+}
+
+.form-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: var(--radius-full);
+  transition: width 0.4s ease;
+  width: 0%;
+}
+
+/* ─── Success Overlay ────────────────────────────────────────── */
+.success-overlay {
+  display: none;
+  text-align: center;
+  padding: var(--space-12) var(--space-6);
+  animation: fadeIn 0.4s ease;
+}
+
+.success-overlay .success-icon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: var(--space-4);
+  animation: bounceIn 0.5s ease;
+}
+
+.success-overlay h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  color: var(--success);
+  margin-bottom: var(--space-2);
+}
+
+.success-overlay p {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-6);
+}
+
+@keyframes bounceIn {
+  0%   { transform: scale(0.3); opacity: 0; }
+  50%  { transform: scale(1.1); }
+  70%  { transform: scale(0.9); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ─── Textarea resize handle custom ─────────────────────────── */
+textarea.form-control {
+  min-height: 90px;
+  max-height: 220px;
+}

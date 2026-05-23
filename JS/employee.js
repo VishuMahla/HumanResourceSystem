@@ -223,7 +223,7 @@ $(function () {
       email: $("#email").val().trim(),
       mobile: $("#mobile").val().trim(),
       gender: $('input[name="gender"]:checked').val(),
-      department: $("#department").val(),
+      deptName: $("#department").val(),
       designation: $("#designation").val(),
       salary: parseFloat($("#salary").val()),
       doj: $("#dateOfJoining").val(),

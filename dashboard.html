@@ -1,64 +1,435 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/Css/style.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-</head>
-<body>
-    <section id="Dashboard">
-        <h1>🏠 Dashboard</h1>
-        <button id="mode">mode</button>
-        <button>notifications</button>
-        <select name="menuitems" id="admin">
-            <option value="adminname">admin name</option>
-            <option value="logout">logout</option>
-        </select>
-    </section>
-    <section id="searchbar">
-        <input type="text" id="searchInput" placeholder="search by Id or name....">
-        <div id="suggestions"></div>
-        <select name="departments" id="deptmenu">
-            <option value="All Departments">All Departments</option>
-            <option value="humanResource">Human Resources</option>
-            <option value="development">Development</option>
-            <option value="testing">Testing</option>
-            <option value="finance">Finance</option>
-            <option value="marketing">Marketing</option>
-        </select>
-        <select name="statusofday" id="stat">
-            <option value="present">Present</option>
-            <option value="absent">Absent</option>
-            <option value="onleave">On Leave</option>
-        </select>
-        <button id="search">🔍︎ Search</button>
-        <button id="reset">Reset</button>
-    </section>
-    <section>
-        <button id="addemp">+ Add Employee</button>
-        <table id="employeestable">
-            <thead>
-                <tr>
-                    <th>Employee ID</th>
-                    <th>Employee Name</th>
-                    <th>Department</th>
-                    <th>Designation</th>
-                    <th>Salary</th>
-                    <th>Attendance status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="tablebody">
-                
-            </tbody>
-        </table>
-        <p id="entryCount"></p>
-    </section>
-    <script src="./JS/Data.js"></script>
-    <script src="./JS/dashboard.js">
-    </script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee List — HRMS</title>
 
-</body>
+    <link rel="stylesheet" href="Css/global.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+  </head>
+  <body>
+    <!-- ── Page Loader ─────────────────────────────────────────── -->
+    <div id="page-loader" class="loader-overlay">
+      <div class="spinner"></div>
+      <p style="color: var(--text-muted); font-size: var(--text-sm)">
+        Loading...
+      </p>
+    </div>
+
+    <!-- ── Sidebar ─────────────────────────────────────────────── -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="sidebar-brand-icon">👥</div>
+        <div class="sidebar-brand-text">NE<span>ZU</span></div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Main</div>
+
+        <a href="dashboard.html" class="nav-item">
+          <span class="nav-icon">🏠</span>
+          <span>Dashboard</span>
+        </a>
+
+        <a href="employee.html" class="nav-item">
+          <span class="nav-icon">👤</span>
+          <span>Employee Registration</span>
+        </a>
+
+        <!-- <a href="employeeList.html" class="nav-item">
+          <span class="nav-icon">📋</span>
+          <span>Employee List</span>
+        </a> -->
+
+        <div class="nav-section-label">Modules</div>
+
+        <a href="departments.html" class="nav-item">
+          <span class="nav-icon">🏢</span>
+          <span>Departments</span>
+        </a>
+
+        <a href="leave.html" class="nav-item">
+          <span class="nav-icon">📅</span>
+          <span>Leave Management</span>
+        </a>
+
+        <a href="reports.html" class="nav-item">
+          <span class="nav-icon">📊</span>
+          <span>Reports</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a
+          href="#"
+          class="nav-item"
+          style="margin: 0; border-radius: var(--radius-md)"
+        >
+          <span class="nav-icon">⚙️</span>
+          <span>Settings</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- ── Main Wrapper ─────────────────────────────────────────── -->
+    <div class="main-wrapper">
+      <!-- Navbar -->
+      <header class="navbar">
+        <div class="navbar-left">
+          <button id="sidebarToggle" class="btn btn-ghost btn-icon">☰</button>
+          <div>
+            <div class="navbar-title">Employee List</div>
+            <div class="navbar-breadcrumb">
+              <span>HRMS</span><span>›</span>
+              <span class="current">All Employees</span>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-right">
+          <span id="themeIcon" style="font-size: 1.1rem">🌙</span>
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            title="Toggle theme"
+          ></button>
+          <a href="employee.html" class="btn btn-primary btn-sm"
+            >+ Add Employee</a
+          >
+          <div class="avatar avatar-sm" style="cursor: pointer">A</div>
+        </div>
+      </header>
+
+      <!-- Content -->
+      <main class="main-content">
+        <!-- Page Header -->
+        <div class="page-header fade-in">
+          <h1>All Employees</h1>
+          <p>View, search, edit, and manage all registered employees.</p>
+        </div>
+
+        <!-- Stats Row -->
+        <div class="list-stats fade-in">
+          <div class="stat-card">
+            <div class="stat-icon blue">👥</div>
+            <div class="stat-info">
+              <div class="stat-value" id="statTotal">0</div>
+              <div class="stat-label">Total Employees</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green">✅</div>
+            <div class="stat-info">
+              <div class="stat-value" id="statActive">0</div>
+              <div class="stat-label">Active</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon red">❌</div>
+            <div class="stat-info">
+              <div class="stat-value" id="statAbsent">0</div>
+              <div class="stat-label">Absent</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon orange">🏖</div>
+            <div class="stat-info">
+              <div class="stat-value" id="statOnLeave">0</div>
+              <div class="stat-label">On Leave</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Table Card -->
+        <div class="card fade-in">
+          <!-- Toolbar -->
+          <div class="list-toolbar">
+            <!-- Search -->
+            <div class="search-bar">
+              <span class="search-icon">🔍</span>
+              <input
+                type="text"
+                id="searchInput"
+                class="form-control"
+                placeholder="Search by name, ID, email, designation…"
+              />
+            </div>
+
+            <!-- Dept Filter -->
+            <div class="select-wrapper filter-select">
+              <select id="deptFilter" class="form-control">
+                <option value="">All Departments</option>
+              </select>
+            </div>
+
+            <!-- Status Filter -->
+            <div class="select-wrapper" style="min-width: 130px">
+              <select id="statusFilter" class="form-control">
+                <option value="">All Status</option>
+                <option value="Active">Active</option>
+                <option value="Absent">Absent</option>
+                <option value="On Leave">On Leave</option>
+              </select>
+            </div>
+
+            <!-- Sort -->
+            <div class="select-wrapper" style="min-width: 160px">
+              <select id="sortSelect" class="form-control">
+                <option value="">Sort By</option>
+                <option value="name_asc">Name A → Z</option>
+                <option value="name_desc">Name Z → A</option>
+                <option value="salary_asc">Salary ↑</option>
+                <option value="salary_desc">Salary ↓</option>
+                <option value="joined_asc">Joined (Oldest)</option>
+                <option value="joined_desc">Joined (Latest)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Table -->
+          <div class="table-wrapper">
+            <table class="table employee-table">
+              <thead>
+                <tr>
+                  <th>Employee</th>
+                  <th>Department</th>
+                  <th>Designation</th>
+                  <th>Salary</th>
+                  <th>Date of Joining</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="employeeTableBody">
+                <!-- Rows injected by employeeList.js -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination -->
+          <div class="pagination">
+            <span class="pagination-info" id="paginationInfo"
+              >Showing 0–0 of 0 employees</span
+            >
+            <div class="pagination-btns" id="paginationBtns"></div>
+          </div>
+        </div>
+        <!-- /.card -->
+      </main>
+    </div>
+    <!-- /.main-wrapper -->
+
+    <!-- Back to Top -->
+    <button id="back-to-top" title="Back to top">↑</button>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!--  VIEW MODAL                                               -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <div class="modal-overlay" id="viewModal">
+      <div class="modal" style="max-width: 520px">
+        <div class="modal-header">
+          <div class="modal-title">Employee Details</div>
+          <button class="btn btn-ghost btn-icon modal-close">✕</button>
+        </div>
+        <div class="modal-body" id="viewModalBody">
+          <!-- Populated by JS -->
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary modal-close">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!--  EDIT MODAL                                               -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <div class="modal-overlay" id="editModal">
+      <div class="modal" style="max-width: 560px">
+        <div class="modal-header">
+          <div class="modal-title">Edit Employee</div>
+          <button class="btn btn-ghost btn-icon modal-close">✕</button>
+        </div>
+        <div class="modal-body">
+          <form id="editForm" novalidate>
+            <div class="edit-form-grid">
+              <div class="form-group">
+                <label class="form-label" for="editName"
+                  >Full Name <span class="required">*</span></label
+                >
+                <input
+                  type="text"
+                  id="editName"
+                  class="form-control"
+                  placeholder="Full name"
+                />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="editEmail"
+                  >Email <span class="required">*</span></label
+                >
+                <input
+                  type="email"
+                  id="editEmail"
+                  class="form-control"
+                  placeholder="Email address"
+                />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="editMobile"
+                  >Mobile <span class="required">*</span></label
+                >
+                <input
+                  type="tel"
+                  id="editMobile"
+                  class="form-control"
+                  placeholder="10-digit number"
+                  maxlength="10"
+                />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="editSalary"
+                  >Salary (₹) <span class="required">*</span></label
+                >
+                <input
+                  type="number"
+                  id="editSalary"
+                  class="form-control"
+                  placeholder="e.g. 45000"
+                  min="1"
+                />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="editDepartment"
+                  >Department <span class="required">*</span></label
+                >
+                <div class="select-wrapper">
+                  <select id="editDepartment" class="form-control">
+                    <option value="">— Select —</option>
+                    <option value="Human Resources">Human Resources</option>
+                    <option value="Development">Development</option>
+                    <option value="Testing">Testing</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Marketing">Marketing</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="editDesignation"
+                  >Designation <span class="required">*</span></label
+                >
+                <div class="select-wrapper">
+                  <select id="editDesignation" class="form-control">
+                    <option value="">— Select —</option>
+                    <option value="Junior Developer">Junior Developer</option>
+                    <option value="Senior Developer">Senior Developer</option>
+                    <option value="Team Lead">Team Lead</option>
+                    <option value="Project Manager">Project Manager</option>
+                    <option value="HR Executive">HR Executive</option>
+                    <option value="HR Manager">HR Manager</option>
+                    <option value="QA Engineer">QA Engineer</option>
+                    <option value="Finance Analyst">Finance Analyst</option>
+                    <option value="Marketing Executive">
+                      Marketing Executive
+                    </option>
+                    <option value="Director">Director</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="editStatus">Status</label>
+                <div class="select-wrapper">
+                  <select id="editStatus" class="form-control">
+                    <option value="Active">Active</option>
+                    <option value="Absent">Absent</option>
+                    <option value="On Leave">On Leave</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group form-full">
+                <label class="form-label" for="editAddress">Address</label>
+                <textarea
+                  id="editAddress"
+                  class="form-control"
+                  rows="3"
+                  placeholder="Full address"
+                ></textarea>
+              </div>
+            </div>
+            <!-- /.edit-form-grid -->
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary modal-close">Cancel</button>
+          <button
+            class="btn btn-primary"
+            id="saveEditBtn"
+            onclick="$('#editForm').trigger('submit')"
+          >
+            💾 Save Changes
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!--  DELETE CONFIRM MODAL                                     -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <div class="modal-overlay" id="deleteModal">
+      <div class="modal" style="max-width: 420px">
+        <div class="modal-header">
+          <div class="modal-title">Delete Employee</div>
+          <button class="btn btn-ghost btn-icon modal-close">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="delete-confirm">
+            <span class="delete-icon">🗑️</span>
+            <strong
+              style="
+                font-size: var(--text-lg);
+                font-family: var(--font-display);
+              "
+            >
+              Are you sure?
+            </strong>
+            <p>
+              You are about to delete <strong id="deleteEmpName"></strong>. This
+              action cannot be undone.
+            </p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary modal-close">Cancel</button>
+          <button class="btn btn-danger" id="confirmDeleteBtn">
+            🗑 Yes, Delete
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- HRMS Scripts -->
+    <script src="JS/validation.js"></script>
+    <script src="js/anilApp.js"></script>
+    <script src="JS/dashboard.js"></script>
+
+    <!-- Loader fallback -->
+    <script>
+      setTimeout(function () {
+        var l = document.getElementById("page-loader");
+        if (l) l.style.display = "none";
+      }, 300);
+    </script>
+  </body>
 </html>

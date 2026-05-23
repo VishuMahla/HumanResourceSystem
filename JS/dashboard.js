@@ -21,6 +21,7 @@ $(document).ready(function () {
 
     if (confirm("Are you sure you want to delete?")) {
         list = list.filter(emp => emp.empId !== empid);
+        
         localStorage.setItem("employees", JSON.stringify(list));
     }
 

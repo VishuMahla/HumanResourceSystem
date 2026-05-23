@@ -9,7 +9,7 @@
 </head>
 <body>
     <section id="Dashboard">
-        <h1>Employee Dashboard</h1>
+        <h1>🏠 Dashboard</h1>
         <button id="mode">mode</button>
         <button>notifications</button>
         <select name="menuitems" id="admin">
@@ -17,45 +17,18 @@
             <option value="logout">logout</option>
         </select>
     </section>
-    <section id="statsection">
-        <div>
-            <span>
-                <img src="" alt="">
-            </span>
-            <p>Total Employees</p>
-            <h3>count</h3>
-        </div>
-        <div>
-            <span>
-                <img src="" alt="">
-            </span>
-            <p>Active Employees</p>
-            <h3>count</h3>
-        </div>
-        <div>
-            <span>
-                <img src="" alt="">
-            </span>
-            <p>Absent Employees</p>
-            <h3>count</h3>
-        </div>
-        <div>
-            <span>
-                <img src="" alt="">
-            </span>
-            <p>On leave</p>
-            <h3>count</h3>
-        </div>
-    </section>
     <section id="searchbar">
-        <input type="text" placeholder="search by Id or name....">
+        <input type="text" id="searchInput" placeholder="search by Id or name....">
+        <div id="suggestions"></div>
         <select name="departments" id="deptmenu">
             <option value="All Departments">All Departments</option>
-            <option value="hr dept">HR Department</option>
-            <option value="it dept">IT Department</option>
-            <option value="others">Others</option>
+            <option value="humanResource">Human Resources</option>
+            <option value="development">Development</option>
+            <option value="testing">Testing</option>
+            <option value="finance">Finance</option>
+            <option value="marketing">Marketing</option>
         </select>
-        <select name="departments" id="deptmenu">
+        <select name="statusofday" id="stat">
             <option value="present">Present</option>
             <option value="absent">Absent</option>
             <option value="onleave">On Leave</option>
@@ -81,9 +54,7 @@
                 
             </tbody>
         </table>
-        <p>Showing 1 to 5 entries</p>
-        <button>Previous</button>
-        <button>Next</button>
+        <p id="entryCount"></p>
     </section>
     <script src="./JS/Data.js"></script>
     <script src="./JS/dashboard.js">

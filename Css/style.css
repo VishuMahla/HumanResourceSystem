@@ -1,0 +1,324 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    padding:30px;
+    background:#f7f7f7;
+}
+
+/* ---------------- DASHBOARD HEADER ---------------- */
+
+#Dashboard{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+    padding:20px;
+    background:#fff;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+#Dashboard h1{
+    font-size:30px;
+}
+
+#Dashboard button,
+#Dashboard select{
+    padding:10px 14px;
+    border:1px solid #ddd;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+/* ---------------- STATS ---------------- */
+
+#statsection{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:25px;
+}
+
+#statsection div{
+    background:#fff;
+    border-radius:10px;
+    padding:25px;
+    text-align:center;
+
+    box-shadow:
+    0 2px 8px rgba(0,0,0,.06);
+}
+
+#statsection img{
+    width:42px;
+    height:42px;
+}
+
+#statsection p{
+    margin-top:10px;
+    font-size:15px;
+}
+
+#statsection h3{
+    margin-top:10px;
+    font-size:26px;
+}
+
+/* ---------------- SEARCH AREA ---------------- */
+
+#searchbar{
+    background:#fff;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+    padding:20px;
+
+    border-radius:10px;
+
+    margin-bottom:25px;
+
+    position:relative;
+
+    box-shadow:
+    0 2px 8px rgba(0,0,0,.06);
+}
+
+#searchbar input,
+#searchbar select,
+#searchbar button{
+
+    padding:12px;
+
+    border:1px solid #ddd;
+
+    border-radius:8px;
+
+}
+
+#searchInput{
+    width:280px;
+}
+
+#search{
+    min-width:100px;
+}
+
+#reset{
+    min-width:100px;
+}
+
+/* ---------------- SUGGESTIONS ---------------- */
+
+#suggestions{
+
+    position:absolute;
+
+    top:75px;
+
+    left:20px;
+
+    width:280px;
+
+    background:#fff;
+
+    border:1px solid #ddd;
+
+    border-radius:8px;
+
+    max-height:180px;
+
+    overflow-y:auto;
+
+    z-index:100;
+
+    box-shadow:
+    0 4px 12px rgba(0,0,0,.08);
+
+}
+
+.suggestion{
+
+    padding:12px;
+
+    cursor:pointer;
+
+}
+
+.suggestion:hover{
+
+    background:#f2f2f2;
+
+}
+
+/* ---------------- TABLE SECTION ---------------- */
+
+section:nth-child(4){
+
+    background:#fff;
+
+    padding:20px;
+
+    border-radius:10px;
+
+    box-shadow:
+    0 2px 8px rgba(0,0,0,.06);
+
+}
+
+#addemp{
+
+    padding:12px 18px;
+
+    margin-bottom:20px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+/* ---------------- TABLE ---------------- */
+
+#employeestable{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+#employeestable th{
+
+    padding:14px;
+
+    text-align:center;
+
+    font-size:15px;
+
+    border-bottom:2px solid #ddd;
+
+}
+
+#employeestable td{
+
+    padding:14px;
+
+    text-align:center;
+
+    border-bottom:1px solid #eee;
+
+}
+
+#employeestable tr:hover{
+
+    background:#fafafa;
+
+}
+
+/* ---------------- BUTTONS ---------------- */
+
+.edit,
+.delete{
+
+    padding:8px 12px;
+
+    border:none;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+    margin:2px;
+
+}
+
+.edit{
+
+    margin-right:6px;
+
+}
+
+/* ---------------- PAGINATION ---------------- */
+
+section p{
+
+    margin-top:18px;
+
+}
+
+section>button{
+
+    margin-top:12px;
+
+    padding:10px 14px;
+
+    border-radius:6px;
+
+    border:1px solid #ddd;
+
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+@media(max-width:768px){
+
+    body{
+
+        padding:15px;
+
+    }
+
+    #Dashboard{
+
+        flex-direction:column;
+
+        gap:15px;
+
+        align-items:flex-start;
+
+    }
+
+    #statsection{
+
+        grid-template-columns:1fr;
+
+    }
+
+    #searchbar{
+
+        flex-direction:column;
+
+    }
+
+    #searchInput{
+
+        width:100%;
+
+    }
+
+    #suggestions{
+
+        position:static;
+
+        width:100%;
+
+    }
+
+    #employeestable{
+
+        font-size:13px;
+
+    }
+
+}

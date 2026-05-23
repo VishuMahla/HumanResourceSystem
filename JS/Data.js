@@ -192,7 +192,32 @@ const attendance = [
 ];
 
 // -- saving all the data into local storage
-localStorage.setItem("employees", JSON.stringify(employees));
-localStorage.setItem("departments", JSON.stringify(departments));
-localStorage.setItem("leaves", JSON.stringify(leaves));
-localStorage.setItem("attendance", JSON.stringify(attendance));
+// ---------- SAVE ONLY FIRST TIME ----------
+
+if (!localStorage.getItem("employees")) {
+    localStorage.setItem(
+        "employees",
+        JSON.stringify(employees)
+    );
+}
+
+if (!localStorage.getItem("departments")) {
+    localStorage.setItem(
+        "departments",
+        JSON.stringify(departments)
+    );
+}
+
+if (!localStorage.getItem("leaves")) {
+    localStorage.setItem(
+        "leaves",
+        JSON.stringify(leaves)
+    );
+}
+
+if (!localStorage.getItem("attendance")) {
+    localStorage.setItem(
+        "attendance",
+        JSON.stringify(attendance)
+    );
+}

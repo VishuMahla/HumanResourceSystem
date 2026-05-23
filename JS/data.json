@@ -1,0 +1,261 @@
+{
+  "credentials": [
+    {
+      "emptype": "hr",
+      "password": "hr123"
+    },
+    {
+      "emptype": "general",
+      "password": "general123"
+    }
+  ],
+  "employees": [
+    {
+      "empId": "EMP101",
+      "name": "Arjun Sharma",
+      "email": "arjun.s@company.com",
+      "mobile": "9876543210",
+      "gender": "Male",
+      "department": "Development",
+      "designation": "Senior Developer",
+      "salary": 85000,
+      "doj": "2023-01-15",
+      "address": "123 Tech Park, Hyderabad",
+      "photo": "images/emp101.jpg",
+      "attendanceStatus": "Present"
+    },
+    {
+      "empId": "EMP102",
+      "name": "Sarah Jenkins",
+      "email": "s.jenkins@company.com",
+      "mobile": "9876543211",
+      "gender": "Female",
+      "department": "Human Resources",
+      "designation": "HR Manager",
+      "salary": 75000,
+      "doj": "2022-11-10",
+      "address": "456 Oak Street, Bangalore",
+      "photo": "images/emp102.jpg",
+      "attendanceStatus": "Absent"
+    },
+    {
+      "empId": "EMP103",
+      "name": "Rohit Verma",
+      "email": "rohit.v@company.com",
+      "mobile": "9876543212",
+      "gender": "Male",
+      "department": "Testing",
+      "designation": "QA Engineer",
+      "salary": 60000,
+      "doj": "2023-03-18",
+      "address": "Whitefield, Bangalore",
+      "photo": "images/emp103.jpg",
+      "attendanceStatus": "Present"
+    },
+    {
+      "empId": "EMP104",
+      "name": "Priya Rai",
+      "email": "priya.r@company.com",
+      "mobile": "9876543213",
+      "gender": "Female",
+      "department": "Testing",
+      "designation": "Test Lead",
+      "salary": 70000,
+      "doj": "2022-09-12",
+      "address": "Gachibowli, Hyderabad",
+      "photo": "images/emp104.jpg",
+      "attendanceStatus": "On Leave"
+    },
+    {
+      "empId": "EMP105",
+      "name": "Karan Mehta",
+      "email": "karan.m@company.com",
+      "mobile": "9876543214",
+      "gender": "Male",
+      "department": "Development",
+      "designation": "Frontend Developer",
+      "salary": 65000,
+      "doj": "2024-01-05",
+      "address": "Pune IT Park",
+      "photo": "images/emp105.jpg",
+      "attendanceStatus": "Present"
+    },
+    {
+      "empId": "EMP106",
+      "name": "Neha Kapoor",
+      "email": "neha.k@company.com",
+      "mobile": "9876543215",
+      "gender": "Female",
+      "department": "Finance",
+      "designation": "Accountant",
+      "salary": 55000,
+      "doj": "2023-07-20",
+      "address": "Mumbai Central",
+      "photo": "images/emp106.jpg",
+      "attendanceStatus": "On Leave"
+    },
+    {
+      "empId": "EMP107",
+      "name": "Divya Nair",
+      "email": "divya.n@company.com",
+      "mobile": "9876543216",
+      "gender": "Female",
+      "department": "Development",
+      "designation": "Backend Developer",
+      "salary": 72000,
+      "doj": "2022-06-01",
+      "address": "Koramangala, Bangalore",
+      "photo": "images/emp107.jpg",
+      "attendanceStatus": "Present"
+    },
+    {
+      "empId": "EMP108",
+      "name": "Aakash Patel",
+      "email": "aakash.p@company.com",
+      "mobile": "9876543217",
+      "gender": "Male",
+      "department": "Marketing",
+      "designation": "Marketing Executive",
+      "salary": 52000,
+      "doj": "2023-09-11",
+      "address": "Bandra, Mumbai",
+      "photo": "images/emp108.jpg",
+      "attendanceStatus": "Present"
+    },
+    {
+      "empId": "EMP109",
+      "name": "Meena Suresh",
+      "email": "meena.s@company.com",
+      "mobile": "9876543218",
+      "gender": "Female",
+      "department": "Finance",
+      "designation": "Finance Analyst",
+      "salary": 63000,
+      "doj": "2021-12-01",
+      "address": "T Nagar, Chennai",
+      "photo": "images/emp109.jpg",
+      "attendanceStatus": "Absent"
+    },
+    {
+      "empId": "EMP110",
+      "name": "Vikram Singh",
+      "email": "vikram.si@company.com",
+      "mobile": "9876543219",
+      "gender": "Male",
+      "department": "Testing",
+      "designation": "Automation Tester",
+      "salary": 67000,
+      "doj": "2022-04-19",
+      "address": "Hitech City, Hyderabad",
+      "photo": "images/emp110.jpg",
+      "attendanceStatus": "Present"
+    },
+    {
+      "empId": "EMP111",
+      "name": "Lakshmi Iyer",
+      "email": "lakshmi.i@company.com",
+      "mobile": "9876543220",
+      "gender": "Female",
+      "department": "Human Resources",
+      "designation": "HR Executive",
+      "salary": 48000,
+      "doj": "2024-02-14",
+      "address": "Adyar, Chennai",
+      "photo": "images/emp111.jpg",
+      "attendanceStatus": "Present"
+    },
+    {
+      "empId": "EMP112",
+      "name": "Sameer Khan",
+      "email": "sameer.k@company.com",
+      "mobile": "9876543221",
+      "gender": "Male",
+      "department": "Marketing",
+      "designation": "SEO Specialist",
+      "salary": 50000,
+      "doj": "2023-05-30",
+      "address": "Salt Lake, Kolkata",
+      "photo": "images/emp112.jpg",
+      "attendanceStatus": "On Leave"
+    },
+    {
+      "empId": "EMP113",
+      "name": "Ritu Ghosh",
+      "email": "ritu.g@company.com",
+      "mobile": "9876543222",
+      "gender": "Female",
+      "department": "Development",
+      "designation": "Full Stack Developer",
+      "salary": 80000,
+      "doj": "2021-08-23",
+      "address": "New Town, Kolkata",
+      "photo": "images/emp113.jpg",
+      "attendanceStatus": "Present"
+    },
+    {
+      "empId": "EMP114",
+      "name": "Tushar Joshi",
+      "email": "tushar.j@company.com",
+      "mobile": "9876543223",
+      "gender": "Male",
+      "department": "Finance",
+      "designation": "Senior Accountant",
+      "salary": 68000,
+      "doj": "2020-10-05",
+      "address": "Deccan, Pune",
+      "photo": "images/emp114.jpg",
+      "attendanceStatus": "Present"
+    },
+    {
+      "empId": "EMP115",
+      "name": "Anjali Reddy",
+      "email": "anjali.r@company.com",
+      "mobile": "9876543224",
+      "gender": "Female",
+      "department": "Testing",
+      "designation": "QA Lead",
+      "salary": 74000,
+      "doj": "2021-03-12",
+      "address": "HITEC City, Hyderabad",
+      "photo": "images/emp115.jpg",
+      "attendanceStatus": "Absent"
+    }
+  ],
+  "departments": [
+    {
+      "deptName": "Development",
+      "deptHead": "Arjun Sharma",
+      "employeeCount": 4,
+      "extension": "202",
+      "type": "Technical"
+    },
+    {
+      "deptName": "Human Resources",
+      "deptHead": "Sarah Jenkins",
+      "employeeCount": 2,
+      "extension": "101",
+      "type": "Administrative"
+    },
+    {
+      "deptName": "Testing",
+      "deptHead": "Priya Rai",
+      "employeeCount": 4,
+      "extension": "303",
+      "type": "Technical"
+    },
+    {
+      "deptName": "Finance",
+      "deptHead": "Tushar Joshi",
+      "employeeCount": 3,
+      "extension": "404",
+      "type": "Administrative"
+    },
+    {
+      "deptName": "Marketing",
+      "deptHead": "Aakash Patel",
+      "employeeCount": 2,
+      "extension": "505",
+      "type": "Creative"
+    }
+  ]
+}

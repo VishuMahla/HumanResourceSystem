@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/Css/style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <section id="Dashboard">
+        <h1>Employee Dashboard</h1>
+        <button id="mode">mode</button>
+        <button>notifications</button>
+        <select name="menuitems" id="admin">
+            <option value="adminname">admin name</option>
+            <option value="logout">logout</option>
+        </select>
+    </section>
+    <section id="statsection">
+        <div>
+            <span>
+                <img src="" alt="">
+            </span>
+            <p>Total Employees</p>
+            <h3>count</h3>
+        </div>
+        <div>
+            <span>
+                <img src="" alt="">
+            </span>
+            <p>Active Employees</p>
+            <h3>count</h3>
+        </div>
+        <div>
+            <span>
+                <img src="" alt="">
+            </span>
+            <p>Absent Employees</p>
+            <h3>count</h3>
+        </div>
+        <div>
+            <span>
+                <img src="" alt="">
+            </span>
+            <p>On leave</p>
+            <h3>count</h3>
+        </div>
+    </section>
+    <section id="searchbar">
+        <input type="text" placeholder="search by Id or name....">
+        <select name="departments" id="deptmenu">
+            <option value="All Departments">All Departments</option>
+            <option value="hr dept">HR Department</option>
+            <option value="it dept">IT Department</option>
+            <option value="others">Others</option>
+        </select>
+        <select name="departments" id="deptmenu">
+            <option value="present">Present</option>
+            <option value="absent">Absent</option>
+            <option value="onleave">On Leave</option>
+        </select>
+        <button id="search">🔍︎ Search</button>
+        <button id="reset">Reset</button>
+    </section>
+    <section>
+        <button id="addemp">+ Add Employee</button>
+        <table id="employeestable">
+            <thead>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Employee Name</th>
+                    <th>Department</th>
+                    <th>Designation</th>
+                    <th>Salary</th>
+                    <th>Attendance status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tablebody">
+                
+            </tbody>
+        </table>
+        <p>Showing 1 to 5 entries</p>
+        <button>Previous</button>
+        <button>Next</button>
+    </section>
+    <script src="/JS/dashboard.js"></script>
+</body>
+</html>

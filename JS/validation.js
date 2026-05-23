@@ -75,7 +75,7 @@ const HRMSValidation = (function () {
     return allowedTypes.includes(file.type);
   }
 
-  function isFileSizeOk(file, maxMB = 2) {
+  function isFileSizeOk(file, maxMB = 30) {
     if (!file) return false;
     return file.size <= maxMB * 1024 * 1024;
   }

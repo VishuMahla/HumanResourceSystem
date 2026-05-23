@@ -27,6 +27,14 @@ $(function () {
     );
   }
 
+  function isMobileAlreadyExists(mobile) {
+    const employees = getEmployees();
+
+    return employees.some(
+      (emp) => emp.mobile == mobile
+    );
+  }
+
   /* ── Generate Employee ID ─────────────────────────────────── */
   function generateEmployeeId() {
     const employees = getEmployees();
@@ -36,9 +44,11 @@ $(function () {
     }
 
     const maxId = Math.max(
-      ...employees.map((emp) => parseInt(emp.employeeId.replace("EMP", ""))),
+      ...employees.map((emp) => parseInt(emp.empId.replace("EMP", ""))),
     );
 
+    
+    
     return "EMP" + String(maxId + 1).padStart(4, "0");
   }
 
@@ -80,8 +90,8 @@ $(function () {
       showToast("Only image files are allowed (JPG, PNG, GIF, WEBP).", "error");
       return;
     }
-    if (!HRMSValidation.isFileSizeOk(file, 2)) {
-      showToast("Image must be under 2MB.", "warning");
+    if (!HRMSValidation.isFileSizeOk(file, 30)) {
+      showToast("Image must be under 30MB.", "warning");
       return;
     }
 
@@ -173,6 +183,14 @@ $(function () {
       HRMSValidation.markInvalid($("#email"), "This email is already taken.");
 
       showToast("Email already exists.", "error");
+      return;
+    }
+
+    const mobile = $("#mobile").val()
+    if (isMobileAlreadyExists(mobile)) {
+      HRMSValidation.markInvalid($("#mobile"), "This mobile no is already taken.");
+
+      showToast("Mobile already exists.", "error");
       return;
     }
 

@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Registration — HRMS</title>
+
+    <!-- Global + Module CSS -->
+    <link rel="stylesheet" href="/Css/global.css" />
+    <link rel="stylesheet" href="/Css/employee.css" />
+  </head>
+  <body>
+    <!-- ── Page Loader ─────────────────────────────────────────── -->
+    <div id="page-loader" class="loader-overlay">
+      <div class="spinner"></div>
+      <p style="color: var(--text-muted); font-size: var(--text-sm)">
+        Loading...
+      </p>
+    </div>
+
+    <!-- ── Sidebar ─────────────────────────────────────────────── -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="sidebar-brand-icon">👥</div>
+        <div class="sidebar-brand-text">HR<span>MS</span></div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Main</div>
+
+        <a href="index.html" class="nav-item">
+          <span class="nav-icon">🏠</span>
+          <span>Dashboard</span>
+        </a>
+
+        <a href="employee.html" class="nav-item active">
+          <span class="nav-icon">👤</span>
+          <span>Employee Registration</span>
+        </a>
+
+        <a href="dashboard.html" class="nav-item">
+          <span class="nav-icon">📋</span>
+          <span>Employee List</span>
+        </a>
+
+        <div class="nav-section-label">Modules</div>
+
+        <a href="department.html" class="nav-item">
+          <span class="nav-icon">🏢</span>
+          <span>Departments</span>
+        </a>
+
+        <a href="leave.html" class="nav-item">
+          <span class="nav-icon">📅</span>
+          <span>Leave Management</span>
+        </a>
+
+        <a href="reports.html" class="nav-item">
+          <span class="nav-icon">📊</span>
+          <span>Reports</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a
+          href="#"
+          class="nav-item"
+          style="margin: 0; border-radius: var(--radius-md)"
+        >
+          <span class="nav-icon">⚙️</span>
+          <span>Settings</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- ── Main Wrapper ─────────────────────────────────────────── -->
+    <div class="main-wrapper">
+      <!-- Navbar -->
+      <header class="navbar">
+        <div class="navbar-left">
+          <button
+            id="sidebarToggle"
+            class="btn btn-ghost btn-icon"
+            title="Toggle sidebar"
+          >
+            ☰
+          </button>
+          <div>
+            <div class="navbar-title">Employee Registration</div>
+            <div class="navbar-breadcrumb">
+              <span>HRMS</span>
+              <span>›</span>
+              <span class="current">New Employee</span>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-right">
+          <!-- Theme Toggle -->
+          <span id="themeIcon" style="font-size: 1.1rem">🌙</span>
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            title="Toggle theme"
+          ></button>
+          <!-- User Avatar -->
+          <div class="avatar avatar-sm" style="cursor: pointer">A</div>
+        </div>
+      </header>
+
+      <!-- Content -->
+      <main class="main-content">
+        <!-- Page Header -->
+        <div class="page-header fade-in">
+          <h1>Register New Employee</h1>
+          <p>Fill in the details below to add a new employee to the system.</p>
+        </div>
+
+        <!-- Form Progress Bar -->
+        <div class="form-progress-bar">
+          <div class="form-progress-fill" id="formProgressFill"></div>
+        </div>
+
+        <!-- Form Wrapper -->
+        <div class="employee-form-wrapper fade-in">
+          <!-- Left: Profile Panel -->
+          <aside class="profile-panel">
+            <div
+              id="photoUploadArea"
+              class="photo-upload-area"
+              title="Click or drop an image"
+            >
+              <img id="photoPreview" src="" alt="Profile Preview" />
+              <div class="photo-placeholder" id="photoPlaceholder">
+                <span class="upload-icon">📷</span>
+                <p>Click or drag<br />to upload photo</p>
+              </div>
+            </div>
+
+            <!-- Hidden file input -->
+            <input
+              type="file"
+              id="profilePhoto"
+              name="profilePhoto"
+              accept="image/*"
+              style="display: none"
+            />
+
+            <div>
+              <p
+                class="text-xs text-muted"
+                style="margin-bottom: var(--space-1)"
+              >
+                Employee ID
+              </p>
+              <div class="employee-id-display" id="empIdDisplay">EMP0000</div>
+            </div>
+
+            <p class="profile-note">
+              Allowed formats: JPG, PNG, WEBP<br />
+              Max size: 2 MB
+            </p>
+          </aside>
+
+          <!-- Right: Form Card -->
+          <div class="form-card">
+            <!-- Success Overlay (hidden by default) -->
+            <div class="success-overlay" id="successOverlay">
+              <span class="success-icon">🎉</span>
+              <h2>Registration Successful!</h2>
+              <p>The employee has been added to the system.</p>
+              <div
+                style="
+                  display: flex;
+                  gap: var(--space-3);
+                  justify-content: center;
+                  flex-wrap: wrap;
+                "
+              >
+                <button class="btn btn-primary" id="registerAnother">
+                  + Register Another
+                </button>
+                <a href="dashboard.html" class="btn btn-secondary"
+                  >View Employee List</a
+                >
+              </div>
+            </div>
+
+            <!-- The Actual Form -->
+            <div id="employeeFormContent">
+              <form id="employeeForm" novalidate>
+                <!-- Section 1: Basic Info -->
+                <div class="form-section">
+                  <div class="form-section-title">
+                    <span class="section-icon">👤</span>
+                    Personal Information
+                  </div>
+
+                  <div class="form-grid-2">
+                    <!-- Employee ID (readonly) -->
+                    <div class="form-group">
+                      <label class="form-label" for="employeeId"
+                        >Employee ID</label
+                      >
+                      <input
+                        type="text"
+                        id="employeeId"
+                        name="employeeId"
+                        class="form-control"
+                        readonly
+                        style="
+                          background: var(--bg-surface-2);
+                          color: var(--primary);
+                          font-weight: 700;
+                        "
+                      />
+                      <span class="form-hint">Auto-generated</span>
+                    </div>
+
+                    <!-- Employee Name -->
+                    <div class="form-group">
+                      <label class="form-label" for="employeeName">
+                        Full Name <span class="required">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        id="employeeName"
+                        name="employeeName"
+                        class="form-control"
+                        placeholder="e.g. Arjun Sharma"
+                        maxlength="80"
+                      />
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                      <label class="form-label" for="email">
+                        Email Address <span class="required">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        class="form-control"
+                        placeholder="e.g. arjun@company.com"
+                      />
+                    </div>
+
+                    <!-- Mobile -->
+                    <div class="form-group">
+                      <label class="form-label" for="mobile">
+                        Mobile Number <span class="required">*</span>
+                      </label>
+                      <input
+                        type="tel"
+                        id="mobile"
+                        name="mobile"
+                        class="form-control"
+                        placeholder="10-digit mobile number"
+                        maxlength="10"
+                      />
+                    </div>
+
+                    <!-- Gender -->
+                    <div class="form-group form-full">
+                      <label class="form-label">
+                        Gender <span class="required">*</span>
+                      </label>
+                      <div class="radio-group">
+                        <label class="radio-option">
+                          <input type="radio" name="gender" value="Male" />
+                          Male
+                        </label>
+                        <label class="radio-option">
+                          <input type="radio" name="gender" value="Female" />
+                          Female
+                        </label>
+                        <label class="radio-option">
+                          <input type="radio" name="gender" value="Other" />
+                          Other
+                        </label>
+                        <label class="radio-option">
+                          <input
+                            type="radio"
+                            name="gender"
+                            value="Prefer not to say"
+                          />
+                          Prefer not to say
+                        </label>
+                      </div>
+                      <span
+                        class="form-error"
+                        id="genderError"
+                        style="display: none"
+                      >
+                        ⚠ Please select a gender.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Section 2: Work Info -->
+                <div class="form-section">
+                  <div class="form-section-title">
+                    <span class="section-icon">🏢</span>
+                    Work Information
+                  </div>
+
+                  <div class="form-grid-2">
+                    <!-- Department -->
+                    <div class="form-group">
+                      <label class="form-label" for="department">
+                        Department <span class="required">*</span>
+                      </label>
+                      <div class="select-wrapper">
+                        <select
+                          id="department"
+                          name="department"
+                          class="form-control"
+                        >
+                          <option value="">— Select Department —</option>
+                          <option value="Human Resources">
+                            Human Resources
+                          </option>
+                          <option value="Development">Development</option>
+                          <option value="Testing">Testing</option>
+                          <option value="Finance">Finance</option>
+                          <option value="Marketing">Marketing</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- Designation -->
+                    <div class="form-group">
+                      <label class="form-label" for="designation">
+                        Designation <span class="required">*</span>
+                      </label>
+                      <div class="select-wrapper">
+                        <select
+                          id="designation"
+                          name="designation"
+                          class="form-control"
+                        >
+                          <option value="">— Select Designation —</option>
+                          <option value="Junior Developer">
+                            Junior Developer
+                          </option>
+                          <option value="Senior Developer">
+                            Senior Developer
+                          </option>
+                          <option value="Team Lead">Team Lead</option>
+                          <option value="Project Manager">
+                            Project Manager
+                          </option>
+                          <option value="HR Executive">HR Executive</option>
+                          <option value="HR Manager">HR Manager</option>
+                          <option value="QA Engineer">QA Engineer</option>
+                          <option value="Finance Analyst">
+                            Finance Analyst
+                          </option>
+                          <option value="Marketing Executive">
+                            Marketing Executive
+                          </option>
+                          <option value="Director">Director</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- Salary -->
+                    <div class="form-group">
+                      <label class="form-label" for="salary">
+                        Salary (₹) <span class="required">*</span>
+                      </label>
+                      <div class="input-prefix-wrapper">
+                        <span class="input-prefix">₹</span>
+                        <input
+                          type="number"
+                          id="salary"
+                          name="salary"
+                          class="form-control"
+                          placeholder="e.g. 45000"
+                          min="1"
+                        />
+                      </div>
+                    </div>
+
+                    <!-- Date of Joining -->
+                    <div class="form-group">
+                      <label class="form-label" for="dateOfJoining">
+                        Date of Joining <span class="required">*</span>
+                      </label>
+                      <input
+                        type="date"
+                        id="dateOfJoining"
+                        name="dateOfJoining"
+                        class="form-control"
+                        max=""
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Section 3: Address -->
+                <div class="form-section">
+                  <div class="form-section-title">
+                    <span class="section-icon">📍</span>
+                    Address
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="address">
+                      Full Address <span class="required">*</span>
+                    </label>
+                    <textarea
+                      id="address"
+                      name="address"
+                      class="form-control"
+                      placeholder="House/Flat No, Street, City, State, PIN Code"
+                      maxlength="300"
+                      rows="4"
+                    ></textarea>
+                    <span class="char-counter" id="addressCounter"
+                      >0/300 characters</span
+                    >
+                  </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                  <button type="button" class="btn btn-ghost" id="clearBtn">
+                    🗑 Clear Form
+                  </button>
+                  <button type="submit" class="btn btn-primary" id="submitBtn">
+                    ✅ Register Employee
+                  </button>
+                </div>
+              </form>
+            </div>
+            <!-- /#employeeFormContent -->
+          </div>
+          <!-- /.form-card -->
+        </div>
+        <!-- /.employee-form-wrapper -->
+      </main>
+    </div>
+
+    <!-- Back to Top -->
+    <button id="back-to-top" title="Back to top">↑</button>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- HRMS Scripts (order matters) -->
+    <script src="/JS/validation.js"></script>
+    <script src="/JS/anilApp.js"></script>
+    <script src="/JS/employee.js"></script>
+
+    <!-- Set max date for joining to today -->
+    <script>
+      document.getElementById("dateOfJoining").max = new Date()
+        .toISOString()
+        .split("T")[0];
+    </script>
+
+    <script>
+      // Fallback: force hide loader after 1 second
+      setTimeout(function () {
+        var loader = document.getElementById("page-loader");
+        if (loader) loader.style.display = "none";
+      }, 800);
+    </script>
+  </body>
+</html>

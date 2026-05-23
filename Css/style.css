@@ -1,8 +1,0 @@
-#statsection{
-    display: flex;
-    justify-content: space-between;
-}
-div{
-    border: 2px solid grey;
-    width: 150px;
-}

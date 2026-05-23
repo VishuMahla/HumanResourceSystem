@@ -3,39 +3,108 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Data File -->
     <script src="../HumanResourceSystem/JS/Data.js"></script>
-    <title>Document</title>
+
+    <title>Reports</title>
   </head>
+
   <body>
-    <!-- Total Employees  
-• Present Employees  
-• Absent Employees  
-• Employees on Leave  
-• Department-wise Employee Count  -->
+    <div class="totalEmployees">Total employees : <span></span></div>
 
-    <div class="totalEmployees">total employees : <span></span></div>
-    <div class="presentEmployees">total present employees : <span></span></div>
-    <div class="absentEmployees">total absent employees :<span></span></div>
-    <div class="employeesOnLeave">total employees on leave :<span></span></div>
+    <div class="presentEmployees">Total present employees : <span></span></div>
 
+    <div class="absentEmployees">Total absent employees : <span></span></div>
+
+    <div class="employeesOnLeave">Total employees on leave : <span></span></div>
+    <h2>Department-wise Employee Count</h2>
+
+    <div class="departmentCounts"></div>
     <script>
-      // --- Fetching them individually ---
+      // Fetching data from localStorage
+
       let storedEmployees = JSON.parse(
         localStorage.getItem("employees") || "[]",
       );
-      let storedDepartments = JSON.parse(
-        localStorage.getItem("departments") || "[]",
-      );
-      let storedLeaves = JSON.parse(localStorage.getItem("leaves") || "[]");
+
       let storedAttendance = JSON.parse(
         localStorage.getItem("attendance") || "[]",
       );
 
-      // displaying total employees
+      let storedLeaves = JSON.parse(localStorage.getItem("leaves") || "[]");
 
+      let storedDepartments = JSON.parse(
+        localStorage.getItem("departments") || "[]",
+      );
+
+      // Today's date
+      const today = new Date();
+      let presentDate = today.toISOString().split("T")[0];
+
+      // Total Employees
       function totalemps() {
-        // $(".totalEmployees").html(.length);
+        $(".totalEmployees span").html(storedEmployees.length);
       }
+
+      // Present Employees
+      function totalpresent() {
+        storedAttendance.forEach((element) => {
+          if (element.date == presentDate) {
+            $(".presentEmployees span").html(element.present);
+          }
+        });
+      }
+
+      // Absent Employees
+      function totalabsent() {
+        storedAttendance.forEach((element) => {
+          if (element.date == presentDate) {
+            $(".absentEmployees span").html(element.absent);
+          }
+        });
+      }
+
+      // Employees On Leave
+      function empOnLeave() {
+        let counter = 0;
+
+        storedLeaves.forEach((element) => {
+          if (
+            element.fromDate <= presentDate &&
+            element.toDate >= presentDate &&
+            element.status == "Approved"
+          ) {
+            counter++;
+          }
+        });
+
+        $(".employeesOnLeave span").html(counter);
+      }
+
+      function departmentWiseCount() {
+        let output = "";
+
+        storedDepartments.forEach((dept) => {
+          output += `
+      <div>
+        <b>${dept.deptName}</b> : ${dept.employeeCount}
+      </div>
+    `;
+        });
+
+        $(".departmentCounts").html(output);
+      }
+
+      // Calling functions
+      totalemps();
+      totalpresent();
+      totalabsent();
+      empOnLeave();
+      departmentWiseCount();
     </script>
   </body>
 </html>

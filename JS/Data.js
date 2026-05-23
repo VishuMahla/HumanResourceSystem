@@ -160,30 +160,30 @@ const leaves = [
     empId: "EMP106",
     empName: "Neha Kapoor",
     leaveType: "Earned Leave",
-    fromDate: "2024-06-01",
-    toDate: "2024-06-05",
+    fromDate: "2026-05-20",
+    toDate: "2026-05-25",
     reason: "Family trip",
-    status: "Pending",
+    status: "Approved",
     totalDays: 5,
   },
 ];
 const attendance = [
   {
-    date: "2024-05-23",
+    date: "2026-05-23",
     totalEmployees: 6,
     present: 3,
     absent: 2,
     onLeave: 1,
   },
   {
-    date: "2024-05-22",
+    date: "2026-05-22",
     totalEmployees: 6,
     present: 4,
     absent: 1,
     onLeave: 1,
   },
   {
-    date: "2024-05-21",
+    date: "2026-05-21",
     totalEmployees: 6,
     present: 5,
     absent: 0,
@@ -196,7 +196,3 @@ localStorage.setItem("employees", JSON.stringify(employees));
 localStorage.setItem("departments", JSON.stringify(departments));
 localStorage.setItem("leaves", JSON.stringify(leaves));
 localStorage.setItem("attendance", JSON.stringify(attendance));
-
-
-
-

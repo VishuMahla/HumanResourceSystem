@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn</title>
+
+    <style>
+
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            background-color: #FFF9D2;
+        }
+        .loginContainer {
+            background-color: #BFDDF0;
+            height: 100vh;
+            width: 50vw;
+        }
+
+        #btnDiv {
+            text-align: center;
+        }
+
+        #loginBtn {
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="loginContainer">
+            <div>Welcome to Nezu</div>
+
+            <div>
+                <form action="/index.html">
+                    <table>
+                        <tr>
+                            <td><label for="userName">Username</label></td>
+                            <td><input type="text" id="userName" placeholder="Username"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="department">Department :</label></td>
+                            <td><input type="text" id="department" placeholder="Department Name"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="password">Password :</label></td>
+                            <td><input type="password" id="password" placeholder="Department Name"></td>
+                        </tr>
+                    </table>
+
+                    <div id="btnDiv"><button id="loginBtn">Login</button></div>
+                </form>
+                
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

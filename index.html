@@ -1,91 +1,71 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="/Css/global.css">
 
-    <style>
-
-        * {
-            margin: 0px;
-            padding: 0px;
-        }
-        .container {
-            display: flex;
-        }
-
-        .sidebar {
-            height: 100vh;
-            width: 20vw;
-            background-color: #BFDDF0;
-
-        }
-        
-        .mainBody {
-            height: 100vh;
-            width: 80vw;
-            background-color: #FFEBCC;
-        }
-
-        .logoImg{
-            text-align: center;
-        }
-        #logoImg {
-            height: 4em;
-            width: 50%;
-        }
-        hr {
-            color: #8CC0EB;
-            border: 1px solid;
-        }
-
-        
-    </style>
-</head>
-<body>
+   
+  </head>
+  <body>
     <div class="container">
-        <div class="sidebar">
-            <div class="logoImg"><img id="logoImg" src="./Images/logoImgDark.png" alt=""></div>
-                <hr>
-            <div class="sidebarBtn">
-                <div class="sideDashboard">
-                    <a> <button>Dashboard</button></a>
-                </div>
-
-                <div class="sideAddEmployee">
-                    <button>add Employee</button>
-                </div>
-
-                <div class="sideLeave">
-                    <button>leave</button>
-                </div>
-
-                <div class="sideDepartment">
-                    <button>department</button>
-                </div>
-
-                <div class="sideSetting">
-                    <button>settings</button>
-                </div>
-
-                <div>
-                    <button>Mode</button>
-                </div>
-            </div>
+      <!-- ── Sidebar ─────────────────────────────────────────────── -->
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="sidebar-brand-icon">👥</div>
+          <div class="sidebar-brand-text">NEZU</div>
         </div>
 
-        <header class="header">
-            
-        </header>
-        <div class="mainBody">
-            this is main body 
-        </div>
+        <nav class="sidebar-nav">
+          <div class="nav-section-label">Main</div>
 
+          <a href="/dashboard.html" class="nav-item">
+            <span class="nav-icon">🏠</span>
+            <span>Dashboard</span>
+          </a>
+
+          <a href="employee.html" class="nav-item active">
+            <span class="nav-icon">👤</span>
+            <span>Employee Registration</span>
+          </a>
+
+          <!-- <a href="/employeeList.html" class="nav-item">
+            <span class="nav-icon">📋</span>
+            <span>Employee List</span>
+          </a> -->
+
+          <div class="nav-section-label">Modules</div>
+
+          <a href="department.html" class="nav-item">
+            <span class="nav-icon">🏢</span>
+            <span>Departments</span>
+          </a>
+
+          <a href="leave.html" class="nav-item">
+            <span class="nav-icon">📅</span>
+            <span>Leave Management</span>
+          </a>
+
+          <a href="reports.html" class="nav-item">
+            <span class="nav-icon">📊</span>
+            <span>Reports</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-footer">
+          <a
+            href="#"
+            class="nav-item"
+            style="margin: 0; border-radius: var(--radius-md)"
+          >
+            <span class="nav-icon">⚙️</span>
+            <span>Settings</span>
+          </a>
+        </div>
+      </aside>
+      <header class="header"></header>
+      <div class="mainBody">this is main body</div>
     </div>
-
-
-</body>
+  </body>
 </html>
-

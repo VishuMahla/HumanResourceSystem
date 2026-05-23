@@ -1,0 +1,137 @@
+/* =========================================
+   PAGE LAYOUT
+========================================= */
+
+.department-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.page-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+/* =========================================
+   STATS GRID
+========================================= */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+}
+
+/* =========================================
+   FILTER SECTION
+========================================= */
+
+.filter-section {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filter-section input,
+.filter-section select {
+  min-width: 220px;
+}
+
+/* =========================================
+   TABLE SECTION
+========================================= */
+
+.table-card {
+  overflow: hidden;
+}
+
+.department-table td {
+  vertical-align: middle;
+}
+
+/* =========================================
+   BADGES
+========================================= */
+
+.badge-technical {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.badge-admin {
+  background: var(--success-light);
+  color: var(--success);
+}
+
+.badge-creative {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.empty-state {
+  padding: var(--space-10);
+  text-align: center;
+}
+
+.empty-state h3 {
+  margin-bottom: var(--space-2);
+  color: var(--text-primary);
+}
+
+.empty-state p {
+  color: var(--text-secondary);
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.table-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-4);
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-section {
+    flex-direction: row;
+    /* align-items: stretch; */
+  }
+
+  /* .filter-section input,
+  .filter-section select,
+  .filter-section button {
+    width: 100%;
+  } */
+}

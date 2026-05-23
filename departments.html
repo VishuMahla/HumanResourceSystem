@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Department Management</title>
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="./Css/global.css" />
+
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="./Css/departments.css" />
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  </head>
+
+  <body>
+    <!-- ── Sidebar ─────────────────────────────────────────────── -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="sidebar-brand-icon">👥</div>
+        <div class="sidebar-brand-text">NE<span>ZU</span></div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Main</div>
+
+        <a href="dashboard.html" class="nav-item">
+          <span class="nav-icon">🏠</span>
+          <span>Dashboard</span>
+        </a>
+
+        <a href="employee.html" class="nav-item">
+          <span class="nav-icon">👤</span>
+          <span>Employee Registration</span>
+        </a>
+
+        <!-- <a href="employeeList.html" class="nav-item">
+          <span class="nav-icon">📋</span>
+          <span>Employee List</span>
+        </a> -->
+
+        <div class="nav-section-label">Modules</div>
+
+        <a href="departments.html" class="nav-item">
+          <span class="nav-icon">🏢</span>
+          <span>Departments</span>
+        </a>
+
+        <a href="leave.html" class="nav-item">
+          <span class="nav-icon">📅</span>
+          <span>Leave Management</span>
+        </a>
+
+        <a href="reports.html" class="nav-item">
+          <span class="nav-icon">📊</span>
+          <span>Reports</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a
+          href="#"
+          class="nav-item"
+          style="margin: 0; border-radius: var(--radius-md)"
+        >
+          <span class="nav-icon">⚙️</span>
+          <span>Settings</span>
+        </a>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Page Header -->
+        <div class="page-header">
+          <div class="page-header-row">
+            <div>
+              <h1>Department Management</h1>
+              <p>Manage and monitor all departments</p>
+            </div>
+
+            <button class="btn btn-primary">+ Add Department</button>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <section class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon blue">🏢</div>
+
+            <div class="stat-info">
+              <div class="stat-value" id="totalDepartments">0</div>
+
+              <div class="stat-label">Total Departments</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon green">💻</div>
+
+            <div class="stat-info">
+              <div class="stat-value" id="technicalCount">0</div>
+
+              <div class="stat-label">Technical</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon orange">📁</div>
+
+            <div class="stat-info">
+              <div class="stat-value" id="administrativeCount">0</div>
+
+              <div class="stat-label">Administrative</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon red">🎨</div>
+
+            <div class="stat-info">
+              <div class="stat-value" id="creativeCount">0</div>
+
+              <div class="stat-label">Creative</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Filter Card -->
+        <div class="card">
+          <div class="filter-section">
+            <input
+              type="text"
+              id="searchDept"
+              class="form-control"
+              placeholder="Search Department..."
+            />
+
+            <select id="deptType" class="form-control">
+              <option value="">All Departments</option>
+
+              <option value="Development">Development</option>
+
+              <option value="Human Resources">Human Resources</option>
+
+              <option value="Testing">Testing</option>
+
+              <option value="Finance">Finance</option>
+
+              <option value="Marketing">Marketing</option>
+            </select>
+
+            <select id="sortDept" class="form-control">
+              <option value="">Sort By</option>
+
+              <option value="name_asc">Name A-Z</option>
+
+              <option value="name_desc">Name Z-A</option>
+
+              <option value="employees_high">Employee Count High-Low</option>
+
+              <option value="employees_low">Employee Count Low-High</option>
+            </select>
+
+            <button id="resetBtn" class="btn btn-danger">Reset</button>
+          </div>
+        </div>
+
+        <!-- Table Card -->
+        <div class="card table-card">
+          <div class="table-wrapper">
+            <table class="table department-table">
+              <thead>
+                <tr>
+                  <th>Department</th>
+                  <th>Department Head</th>
+                  <th>Employees</th>
+                  <th>Extension</th>
+                  <th>Type</th>
+                </tr>
+              </thead>
+
+              <tbody id="deptBody"></tbody>
+            </table>
+          </div>
+
+          <!-- Empty State -->
+          <div id="emptyState" class="empty-state hidden">
+            <h3>No Departments Found</h3>
+
+            <p>Try changing filters or search.</p>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="table-footer">
+          <p id="entries">Showing 0 Departments</p>
+        </div>
+      </main>
+    </div>
+
+    <!-- JS -->
+     <script src="js/anilApp.js"></script>
+    <script src="./JS/Data.js"></script>
+    <script src="./JS/departments.js"></script>
+  </body>
+</html>

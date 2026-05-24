@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leave Management — HRMS</title>
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="Css/global.css" />
+  </head>
+  <body>
+    <!-- ── Page Loader ─────────────────────────────────────────── -->
+    <div id="page-loader" class="loader-overlay">
+      <div class="spinner"></div>
+      <p style="color: var(--text-muted); font-size: var(--text-sm)">
+        Loading...
+      </p>
+    </div>
+
+    <!-- ── Sidebar ─────────────────────────────────────────────── -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="sidebar-brand-icon">👥</div>
+        <div class="sidebar-brand-text">NE<span>ZU</span></div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Main</div>
+
+        <a href="dashboard.html" class="nav-item">
+          <span class="nav-icon">🏠</span>
+          <span>Dashboard</span>
+        </a>
+
+        <a href="employee.html" class="nav-item">
+          <span class="nav-icon">👤</span>
+          <span>Employee Registration</span>
+        </a>
+
+        <div class="nav-section-label">Modules</div>
+
+        <a href="departments.html" class="nav-item">
+          <span class="nav-icon">🏢</span>
+          <span>Departments</span>
+        </a>
+
+        <!-- ACTIVE CLASS ON LEAVE -->
+        <a href="leave.html" class="nav-item active">
+          <span class="nav-icon">📅</span>
+          <span>Leave Management</span>
+        </a>
+
+        <a href="reports.html" class="nav-item">
+          <span class="nav-icon">📊</span>
+          <span>Reports</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a
+          href="#"
+          class="nav-item"
+          style="margin: 0; border-radius: var(--radius-md)"
+        >
+          <span class="nav-icon">⚙️</span>
+          <span>Settings</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- ── Main Wrapper ─────────────────────────────────────────── -->
+    <div class="main-wrapper">
+      <!-- Navbar -->
+      <header class="navbar">
+        <div class="navbar-left">
+          <button id="sidebarToggle" class="btn btn-ghost btn-icon">☰</button>
+          <div>
+            <div class="navbar-title">Leave Management</div>
+            <div class="navbar-breadcrumb">
+              <span>HRMS</span><span>›</span>
+              <span class="current">Leaves</span>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-right">
+          <span id="themeIcon" style="font-size: 1.1rem">🌙</span>
+          <button class="theme-toggle" id="themeToggle" title="Toggle theme"></button>
+          <div class="avatar avatar-sm" style="cursor: pointer">A</div>
+        </div>
+      </header>
+
+      <!-- Content -->
+      <main class="main-content">
+        <!-- Page Header -->
+        <div class="page-header fade-in">
+          <h1>Leave Management</h1>
+          <p>Review, approve, and manage employee leave requests.</p>
+        </div>
+
+        <!-- 
+             LEAVE CONTENT GOES HERE 
+             You can copy the cards/tables for leaves inside this block.
+        -->
+      </main>
+    </div>
+
+    <!-- Back to Top -->
+    <button id="back-to-top" title="Back to top">↑</button>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <!-- HRMS Scripts -->
+    <script src="JS/anilApp.js"></script>
+  </body>
+</html>

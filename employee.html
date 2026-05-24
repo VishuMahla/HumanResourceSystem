@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Employee Registration — HRMS</title>
+    <title>Employee Registration — NEZU</title>
 
     <!-- Global + Module CSS -->
     <link rel="stylesheet" href="./Css/global.css" />
     <link rel="stylesheet" href="./Css/employee.css" />
+    <link rel="icon" type="image/png" href="./Images/favicon.jpg" />
   </head>
   <body>
     <!-- ── Page Loader ─────────────────────────────────────────── -->
@@ -21,8 +22,7 @@
     <!-- ── Sidebar ─────────────────────────────────────────────── -->
     <aside class="sidebar">
       <div class="sidebar-brand">
-        <div class="sidebar-brand-icon">👥</div>
-        <div class="sidebar-brand-text">NE<span>ZU</span></div>
+        <img src="images/logo-dark.png" alt="NEZU Logo" class="brand-logo" />
       </div>
 
       <nav class="sidebar-nav">
@@ -65,10 +65,11 @@
         <a
           href="#"
           class="nav-item"
+          id="logoutBtn"
           style="margin: 0; border-radius: var(--radius-md)"
         >
-          <span class="nav-icon">⚙️</span>
-          <span>Settings</span>
+          <span class="nav-icon">🚪</span>
+          <span>Logout</span>
         </a>
       </div>
     </aside>
@@ -88,7 +89,7 @@
           <div>
             <div class="navbar-title">Employee Registration</div>
             <div class="navbar-breadcrumb">
-              <span>HRMS</span>
+              <span>NEZU</span>
               <span>›</span>
               <span class="current">New Employee</span>
             </div>
@@ -226,7 +227,7 @@
                         id="employeeName"
                         name="employeeName"
                         class="form-control"
-                        placeholder="e.g. Anil Raj"
+                        placeholder="e.g. Mukesh MC"
                         maxlength="80"
                       />
                     </div>
@@ -454,7 +455,7 @@
 
     <!-- HRMS Scripts (order matters) -->
     <script src="JS/validation.js"></script>
-    <script src="JS/anilApp.js"></script>
+    <script src="JS/app.js"></script>
     <script src="JS/employee.js"></script>
 
     <!-- Set max date for joining to today -->

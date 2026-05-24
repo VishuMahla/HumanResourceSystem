@@ -57,11 +57,20 @@ $(function () {
   });
 
   /* ── 5. Page Loader ─────────────────────────────────────────── */
-  $(window).on("load", function () {
-    $("#page-loader").fadeOut(400, function () {
-      $(this).remove();
-    });
-  });
+  const hideLoader = function () {
+    const $loader = $("#page-loader");
+    if ($loader.length) {
+      $loader.fadeOut(400, function () {
+        $(this).remove();
+      });
+    }
+  };
+
+  if (document.readyState === "complete") {
+    hideLoader();
+  } else {
+    $(window).on("load", hideLoader);
+  }
 
   /* ── 6. Toast Notifications ─────────────────────────────────── */
   // Usage from any page:

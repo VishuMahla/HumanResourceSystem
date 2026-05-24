@@ -84,7 +84,11 @@
         </div>
         <div class="navbar-right">
           <span id="themeIcon" style="font-size: 1.1rem">🌙</span>
-          <button class="theme-toggle" id="themeToggle" title="Toggle theme"></button>
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            title="Toggle theme"
+          ></button>
           <div class="avatar avatar-sm" style="cursor: pointer">A</div>
         </div>
       </header>
@@ -109,8 +113,16 @@
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    
+
     <!-- HRMS Scripts -->
     <script src="JS/anilApp.js"></script>
+
+    <!-- Loader fallback -->
+    <script>
+      setTimeout(function () {
+        var l = document.getElementById("page-loader");
+        if (l) l.style.display = "none";
+      }, 300);
+    </script>
   </body>
 </html>

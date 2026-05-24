@@ -174,9 +174,18 @@ $(function () {
   /* ── 10. User Avatar Logic ──────────────────────────────────── */
   $(document).on('submit', '#loginForm', function(e) {
     e.preventDefault();
-    const username = $('#userName').val();
+    const username = $('#userName').val().trim();
     const department = $('#department').val();
     const password = $('#password').val();
+
+    // Find employee in localStorage
+    const employees = JSON.parse(localStorage.getItem('employees') || '[]');
+    const employee = employees.find(emp => emp.name.toLowerCase() === username.toLowerCase() && emp.department === department);
+
+    if (!employee) {
+      showToast('Employee not found in the selected department. Please check your details.', 'error');
+      return;
+    }
 
     let isValid = false;
 
@@ -187,8 +196,8 @@ $(function () {
     }
 
     if (isValid) {
-      localStorage.setItem('loggedInUser', username);
-      localStorage.setItem('loggedInDepartment', department);
+      localStorage.setItem('loggedInUser', employee.name);
+      localStorage.setItem('loggedInDepartment', employee.department);
       window.location.href = 'index.html';
     } else {
       if (department === "Human Resources") {

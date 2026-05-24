@@ -44,7 +44,7 @@
 
         <div class="nav-section-label">Modules</div>
 
-        <a href="departments.html" class="nav-item">
+        <a href="departments.html" class="nav-item active">
           <span class="nav-icon">🏢</span>
           <span>Departments</span>
         </a>
@@ -73,10 +73,42 @@
     </aside>
 
     <div class="main-wrapper">
+      <!-- Navbar -->
+      <header class="navbar">
+        <div class="navbar-left">
+          <button
+            id="sidebarToggle"
+            class="btn btn-ghost btn-icon"
+            title="Toggle sidebar"
+          >
+            ☰
+          </button>
+          <div>
+            <div class="navbar-title">Department Management</div>
+            <div class="navbar-breadcrumb">
+              <span>HRMS</span>
+              <span>›</span>
+              <span class="current">Departments</span>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-right">
+          <!-- Theme Toggle -->
+          <span id="themeIcon" style="font-size: 1.1rem">🌙</span>
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            title="Toggle theme"
+          ></button>
+          <!-- User Avatar -->
+          <div class="avatar avatar-sm" style="cursor: pointer">A</div>
+        </div>
+      </header>
+
       <!-- Main Content -->
       <main class="main-content">
         <!-- Page Header -->
-        <div class="page-header">
+        <div class="page-header fade-in">
           <div class="page-header-row">
             <div>
               <h1>Department Management</h1>
@@ -203,8 +235,14 @@
       </main>
     </div>
 
+    <!-- Back to Top -->
+    <button id="back-to-top" title="Back to top">↑</button>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
     <!-- JS -->
-     <script src="js/anilApp.js"></script>
+    <script src="JS/anilApp.js"></script>
     <script src="./JS/Data.js"></script>
     <script src="./JS/departments.js"></script>
   </body>

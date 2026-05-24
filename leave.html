@@ -7,7 +7,8 @@
 
     <!-- Global CSS -->
     <link rel="stylesheet" href="Css/global.css" />
-    <link rel="icon" type="image/png" href="./Images/favicon.jpg" />
+    <link rel="stylesheet" href="Css/leave.css" />
+    <link rel="icon" type="image/png" href="./Images/favicon.png" />
   </head>
   <body>
     <!-- ── Page Loader ─────────────────────────────────────────── -->
@@ -99,13 +100,116 @@
         <!-- Page Header -->
         <div class="page-header fade-in">
           <h1>Leave Management</h1>
-          <p>Review, approve, and manage employee leave requests.</p>
+          <p>Apply for a new leave and track your leave status.</p>
         </div>
 
-        <!-- 
-             LEAVE CONTENT GOES HERE 
-             You can copy the cards/tables for leaves inside this block.
-        -->
+        <!-- =================================================================== -->
+        <!--  VIEW FOR STANDARD EMPLOYEES                                        -->
+        <!-- =================================================================== -->
+        <div id="employeeLeaveView" style="display: none;">
+          <!-- Apply for Leave Form -->
+          <div class="leave-form-wrapper fade-in">
+            <!-- Left: User Info Panel -->
+            <aside class="user-info-panel">
+              <div class="avatar avatar-2xl">U</div>
+              <div>
+                <div class="user-name">User Name</div>
+                <div class="user-dept">Department</div>
+              </div>
+              <p class="profile-note">Your details are pre-filled. Please fill out the leave request form.</p>
+            </aside>
+
+            <!-- Right: Form Card -->
+            <div class="form-card">
+              <form id="leaveApplicationForm" novalidate>
+                <!-- Section 1: Leave Details -->
+                <div class="form-section">
+                  <div class="form-section-title">
+                    <span class="section-icon">📅</span>
+                    Leave Application Details
+                  </div>
+                  <div class="form-grid-2">
+                    <div class="form-group">
+                      <label class="form-label">Employee ID</label>
+                      <input type="text" id="employeeId" class="form-control" readonly />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Employee Name</label>
+                      <input type="text" id="employeeName" class="form-control" readonly />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="leaveType">Leave Type <span class="required">*</span></label>
+                      <div class="select-wrapper">
+                        <select id="leaveType" class="form-control">
+                          <option value="">— Select Type —</option>
+                          <option value="Sick Leave">Sick Leave</option>
+                          <option value="Casual Leave">Casual Leave</option>
+                          <option value="Earned Leave">Earned Leave</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Total Days</label>
+                      <div id="totalDaysDisplay" class="total-days-display">0 Day(s)</div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="fromDate">From Date <span class="required">*</span></label>
+                      <input type="date" id="fromDate" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="toDate">To Date <span class="required">*</span></label>
+                      <input type="date" id="toDate" class="form-control" />
+                    </div>
+                    <div class="form-group form-full">
+                      <label class="form-label" for="reason">Reason for Leave <span class="required">*</span></label>
+                      <textarea id="reason" class="form-control" rows="4" placeholder="Please provide a brief reason for your leave..."></textarea>
+                    </div>
+                  </div>
+                </div>
+                <!-- Form Actions -->
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary">✅ Submit Application</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- My Leave Status Section -->
+          <div class="card mt-6">
+            <button class="btn btn-secondary w-full" id="viewMyStatusBtn" style="justify-content: space-between;">
+              View My Leave Status
+              <span style="transition: transform 0.3s ease;">▶</span>
+            </button>
+            <div id="myLeaveStatusPanel" style="display: none; margin-top: var(--space-4);">
+              <div class="table-wrapper">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Employee</th><th>Leave Type</th><th>From</th><th>To</th><th>Days</th><th class="text-center">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="myLeavesTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- =================================================================== -->
+        <!--  VIEW FOR HR                                                        -->
+        <!-- =================================================================== -->
+        <div id="hrLeaveView" class="card table-card fade-in" style="display: none;">
+          <div class="table-wrapper">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Employee</th><th>Leave Type</th><th>From</th><th>To</th><th>Days</th><th class="text-center">Status</th><th class="hr-action-col text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="allLeavesTableBody"></tbody>
+            </table>
+          </div>
+        </div>
       </main>
     </div>
 
@@ -114,9 +218,12 @@
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
+    
     <!-- HRMS Scripts -->
+    <script src="JS/validation.js"></script>
+    <script src="JS/Data.js"></script>
     <script src="JS/app.js"></script>
+    <script src="JS/leave.js"></script>
 
     <!-- Loader fallback -->
     <script>

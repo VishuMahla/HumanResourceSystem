@@ -1,0 +1,84 @@
+/* ============================================================
+   leave.css — Leave Management Module Styles
+   ============================================================ */
+
+/* ─── Leave Form Layout ──────────────────────────────────────── */
+.leave-form-wrapper {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .leave-form-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── User Info Panel ────────────────────────────────────────── */
+.user-info-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  text-align: center;
+  position: sticky;
+  top: calc(var(--navbar-height) + var(--space-6));
+}
+
+.user-info-panel .avatar {
+  border: 3px solid var(--border);
+}
+
+.user-info-panel .user-name {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+}
+
+.user-info-panel .user-dept {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin-top: calc(-1 * var(--space-3));
+}
+
+/* ─── Total Days Display ─────────────────────────────────────── */
+.total-days-display {
+  background: var(--bg-surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--primary);
+  text-align: center;
+}
+
+/* ─── Leave Status Badges ────────────────────────────────────── */
+.badge-pending {
+  background: var(--warning-light);
+  color: var(--warning);
+  border: 1px solid var(--warning-border);
+}
+
+.badge-approved {
+  background: var(--success-light);
+  color: var(--success);
+  border: 1px solid var(--success-border);
+}
+
+.badge-rejected {
+  background: var(--danger-light);
+  color: var(--danger);
+  border: 1px solid var(--danger-border);
+}
+
+/* Hide HR-only action columns by default */
+.hr-action-col { display: none; }

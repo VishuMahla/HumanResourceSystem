@@ -215,6 +215,7 @@ body {
 .sidebar-brand {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: var(--space-3);
   padding: var(--space-6) var(--space-5);
   border-bottom: 1px solid rgba(255,255,255,0.07);
@@ -231,6 +232,19 @@ body {
   flex-shrink: 0;
   box-shadow: var(--shadow-primary);
 }
+
+.brand-logo {
+  max-height: 70px;
+  max-width: 100%;
+  width: auto;
+}
+
+.dark-logo {
+  display: none;
+}
+
+body.dark-mode .light-logo { display: none; }
+body.dark-mode .dark-logo { display: block; }
 
 .sidebar-brand-text {
   font-family: var(--font-display);

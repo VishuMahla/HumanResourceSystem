@@ -1,65 +1,106 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LogIn</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login — NEZU</title>
 
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="Css/global.css" />
+    <link rel="icon" type="image/png" href="./Images/favicon.jpg" />
     <style>
-
-        * {
-            margin: 0px;
-            padding: 0px;
-        }
-        .container {
-            display: flex;
-            justify-content: center;
-            height: 100vh;
-            background-color: #FFF9D2;
-        }
-        .loginContainer {
-            background-color: #BFDDF0;
-            height: 100vh;
-            width: 50vw;
-        }
-
-        #btnDiv {
-            text-align: center;
-        }
-
-        #loginBtn {
-            width: 50%;
-        }
+      .login-wrapper {
+        width: 100%;
+        flex: 1;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg-body);
+        padding: var(--space-4);
+      }
+      .login-card {
+        width: 100%;
+        max-width: 420px;
+        background: var(--bg-surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-xl);
+        padding: var(--space-8) var(--space-6);
+        box-shadow: var(--shadow-xl);
+      }
+      .login-brand {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-3);
+        margin-bottom: var(--space-6);
+      }
+      .login-brand .sidebar-brand-icon {
+        width: 48px;
+        height: 48px;
+        font-size: var(--text-2xl);
+      }
+      .login-brand .sidebar-brand-text {
+        font-size: var(--text-3xl);
+        color: var(--text-primary);
+      }
+      .login-brand .sidebar-brand-text span {
+        color: var(--primary);
+      }
+      .login-title {
+        text-align: center;
+        font-size: var(--text-lg);
+        font-weight: 600;
+        margin-bottom: var(--space-6);
+        color: var(--text-secondary);
+      }
     </style>
-</head>
-<body>
-    <div class="container">
-        <div class="loginContainer">
-            <div>Welcome to Nezu</div>
-
-            <div>
-                <form action="/index.html">
-                    <table>
-                        <tr>
-                            <td><label for="userName">Username</label></td>
-                            <td><input type="text" id="userName" placeholder="Username"></td>
-                        </tr>
-                        <tr>
-                            <td><label for="department">Department :</label></td>
-                            <td><input type="text" id="department" placeholder="Department Name"></td>
-                        </tr>
-                        <tr>
-                            <td><label for="password">Password :</label></td>
-                            <td><input type="password" id="password" placeholder="Department Name"></td>
-                        </tr>
-                    </table>
-
-                    <div id="btnDiv"><button id="loginBtn">Login</button></div>
-                </form>
-                
-            </div>
-            
-        </div>
+  </head>
+  <body>
+    <!-- Theme Toggle Wrapper -->
+    <div style="position: absolute; top: var(--space-6); right: var(--space-6);">
+      <span id="themeIcon" style="font-size: 1.1rem; margin-right: 8px;">🌙</span>
+      <button class="theme-toggle" id="themeToggle" title="Toggle theme"></button>
     </div>
-</body>
+
+    <div class="login-wrapper fade-in">
+      <div class="login-card">
+        <div class="login-brand">
+          <img src="images/logo-dark.png" alt="NEZU Logo" class="brand-logo" />
+        </div>
+
+        <div class="login-title">Sign in to your account</div>
+
+        <form id="loginForm">
+          <div class="form-group mb-4">
+            <label class="form-label" for="userName">Username</label>
+            <input type="text" id="userName" class="form-control" placeholder="Enter your username" required>
+          </div>
+          <div class="form-group mb-4">
+            <label class="form-label" for="department">Department</label>
+            <div class="select-wrapper">
+              <select id="department" class="form-control" required>
+                <option value="" disabled selected>Select your department</option>
+                <option value="Development">Development</option>
+                <option value="Human Resources">Human Resources</option>
+                <option value="Testing">Testing</option>
+                <option value="Finance">Finance</option>
+                <option value="Marketing">Marketing</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group mb-6">
+            <label class="form-label" for="password">Password</label>
+            <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+          </div>
+          <button type="submit" id="loginBtn" class="btn btn-primary btn-lg w-full" style="justify-content: center;">Login</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- jQuery & Shared Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="JS/Data.js"></script>
+    <script src="JS/app.js"></script>
+  </body>
 </html>

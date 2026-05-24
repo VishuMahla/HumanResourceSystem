@@ -3,34 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="/Css/global.css">
-
-   
+    <title>Home — NEZU</title>
+    <link rel="stylesheet" href="Css/global.css">
+    <link rel="icon" type="image/png" href="./Images/favicon.jpg" >
   </head>
   <body>
-    <div class="container">
+    <!-- ── Page Loader ─────────────────────────────────────────── -->
+    <div id="page-loader" class="loader-overlay">
+      <div class="spinner"></div>
+      <p style="color: var(--text-muted); font-size: var(--text-sm)">
+        Loading...
+      </p>
+    </div>
+
       <!-- ── Sidebar ─────────────────────────────────────────────── -->
       <aside class="sidebar">
         <div class="sidebar-brand">
-          <div class="sidebar-brand-icon">👥</div>
-          <div class="sidebar-brand-text">NEZU</div>
+          <img src="images/logo-dark.png" alt="NEZU Logo" class="brand-logo" />
         </div>
 
         <nav class="sidebar-nav">
           <div class="nav-section-label">Main</div>
 
-          <a href="/dashboard.html" class="nav-item">
+          <a href="dashboard.html" class="nav-item">
             <span class="nav-icon">🏠</span>
             <span>Dashboard</span>
           </a>
 
-          <a href="employee.html" class="nav-item active">
+          <a href="employee.html" class="nav-item">
             <span class="nav-icon">👤</span>
             <span>Employee Registration</span>
           </a>
-
-          
 
           <div class="nav-section-label">Modules</div>
 
@@ -54,16 +57,66 @@
           <a
             href="#"
             class="nav-item"
+            id="logoutBtn"
             style="margin: 0; border-radius: var(--radius-md)"
           >
-            <span class="nav-icon">⚙️</span>
-            <span>Settings</span>
+            <span class="nav-icon">🚪</span>
+            <span>Logout</span>
           </a>
         </div>
       </aside>
 
-      <header class="header"></header>
-      <div class="mainBody">this is main body</div>
+    <!-- ── Main Wrapper ─────────────────────────────────────────── -->
+    <div class="main-wrapper">
+      <!-- Navbar -->
+      <header class="navbar">
+        <div class="navbar-left">
+          <button id="sidebarToggle" class="btn btn-ghost btn-icon">☰</button>
+          <div>
+            <div class="navbar-title">Home</div>
+            <div class="navbar-breadcrumb">
+              <span>NEZU</span><span>›</span>
+              <span class="current">Home</span>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-right">
+          <span id="themeIcon" style="font-size: 1.1rem">🌙</span>
+          <button class="theme-toggle" id="themeToggle" title="Toggle theme"></button>
+          <div class="avatar avatar-sm" style="cursor: pointer">A</div>
+        </div>
+      </header>
+
+      <!-- Content -->
+      <main class="main-content">
+        <!-- Page Header -->
+        <div class="page-header fade-in">
+          <h1>Welcome to NEZU</h1>
+          <p>You have successfully logged in. Please select a module from the sidebar to get started.</p>
+        </div>
+
+        <!-- Generic Welcome Card -->
+        <div class="card fade-in">
+          <h2 class="card-title">Getting Started</h2>
+          <p class="text-muted mt-2">This is your main dashboard homepage. From here you can access employee lists, department management, or generate reports.</p>
+        </div>
+      </main>
     </div>
+
+    <!-- Back to Top -->
+    <button id="back-to-top" title="Back to top">↑</button>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- HRMS Scripts -->
+    <script src="JS/app.js"></script>
+
+    <!-- Loader fallback -->
+    <script>
+      setTimeout(function () {
+        var l = document.getElementById("page-loader");
+        if (l) l.style.display = "none";
+      }, 300);
+    </script>
   </body>
 </html>

@@ -4,13 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Department Management</title>
+    <title>Department Management — NEZU</title>
 
     <!-- Global CSS -->
     <link rel="stylesheet" href="./Css/global.css" />
 
     <!-- Page CSS -->
     <link rel="stylesheet" href="./Css/departments.css" />
+    <link rel="icon" type="image/png" href="./Images/favicon.jpg" >
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -20,8 +21,7 @@
     <!-- ── Sidebar ─────────────────────────────────────────────── -->
     <aside class="sidebar">
       <div class="sidebar-brand">
-        <div class="sidebar-brand-icon">👥</div>
-        <div class="sidebar-brand-text">NE<span>ZU</span></div>
+        <img src="images/logo-dark.png" alt="NEZU Logo" class="brand-logo" />
       </div>
 
       <nav class="sidebar-nav">
@@ -64,10 +64,11 @@
         <a
           href="#"
           class="nav-item"
+          id="logoutBtn"
           style="margin: 0; border-radius: var(--radius-md)"
         >
-          <span class="nav-icon">⚙️</span>
-          <span>Settings</span>
+          <span class="nav-icon">🚪</span>
+          <span>Logout</span>
         </a>
       </div>
     </aside>
@@ -86,7 +87,7 @@
           <div>
             <div class="navbar-title">Department Management</div>
             <div class="navbar-breadcrumb">
-              <span>HRMS</span>
+              <span>NEZU</span>
               <span>›</span>
               <span class="current">Departments</span>
             </div>
@@ -242,7 +243,7 @@
     <div id="toast-container"></div>
 
     <!-- JS -->
-    <script src="JS/anilApp.js"></script>
+    <script src="JS/app.js"></script>
     <script src="./JS/Data.js"></script>
     <script src="./JS/departments.js"></script>
   </body>

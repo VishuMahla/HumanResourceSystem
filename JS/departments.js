@@ -9,11 +9,31 @@ const STORAGE_KEY = "departments";
 ========================================= */
 
 function getDepartments() {
+  const departments = JSON.parse(localStorage.getItem("departments")) || [];
 
-  return JSON.parse(
-    localStorage.getItem(STORAGE_KEY)
-  ) || [];
+  const employees = JSON.parse(localStorage.getItem("employees")) || [];
 
+  return departments.map(function (dept) {
+    const deptEmployees = employees.filter(function (emp) {
+      return emp.department === dept.deptName || emp.deptName === dept.deptName;
+    });
+
+    let deptHead = "-";
+
+    if (deptEmployees.length > 0) {
+      deptEmployees.sort(function (a, b) {
+        return new Date(a.doj) - new Date(b.doj);
+      });
+
+      deptHead = deptEmployees[0].name;
+    }
+
+    return {
+      ...dept,
+      employeeCount: deptEmployees.length,
+      deptHead: deptHead,
+    };
+  });
 }
 
 let filteredDepartments = [];
@@ -23,13 +43,11 @@ let filteredDepartments = [];
 ========================================= */
 
 $(document).ready(function () {
-
   filteredDepartments = getDepartments();
 
   renderDepartments(filteredDepartments);
 
   renderStats();
-
 });
 
 /* =========================================
@@ -37,41 +55,27 @@ $(document).ready(function () {
 ========================================= */
 
 function renderDepartments(data) {
-
   $("#deptBody").empty();
 
   if (data.length === 0) {
-
     $("#emptyState").show();
 
     $("#entries").text("Showing 0 Departments");
 
     return;
-
   }
 
   $("#emptyState").hide();
 
   data.forEach(function (dept) {
-
     let badgeClass = "";
 
     if (dept.type === "Technical") {
-
       badgeClass = "badge-technical";
-
-    }
-
-    else if (dept.type === "Administrative") {
-
+    } else if (dept.type === "Administrative") {
       badgeClass = "badge-admin";
-
-    }
-
-    else {
-
+    } else {
       badgeClass = "badge-creative";
-
     }
 
     $("#deptBody").append(`
@@ -95,13 +99,9 @@ function renderDepartments(data) {
       </tr>
 
     `);
-
   });
 
-  $("#entries").text(
-    `Showing ${data.length} Departments`
-  );
-
+  $("#entries").text(`Showing ${data.length} Departments`);
 }
 
 /* =========================================
@@ -109,93 +109,48 @@ function renderDepartments(data) {
 ========================================= */
 
 function applyFilters() {
-
   let departments = getDepartments();
 
-  const searchText =
-    $("#searchDept")
-      .val()
-      .trim()
-      .toLowerCase();
+  const searchText = $("#searchDept").val().trim().toLowerCase();
 
-  const selectedDept =
-    $("#deptType").val();
+  const selectedDept = $("#deptType").val();
 
-  const sortValue =
-    $("#sortDept").val();
+  const sortValue = $("#sortDept").val();
 
   /* FILTERING */
 
   filteredDepartments = departments.filter(function (dept) {
-
     const matchesSearch =
-
-      dept.deptName
-        .toLowerCase()
-        .includes(searchText)
-
-      ||
-
-      dept.deptHead
-        .toLowerCase()
-        .includes(searchText);
+      dept.deptName.toLowerCase().includes(searchText) ||
+      dept.deptHead.toLowerCase().includes(searchText);
 
     const matchesDepartment =
-
-      selectedDept === ""
-
-      ||
-
-      dept.deptName === selectedDept;
+      selectedDept === "" || dept.deptName === selectedDept;
 
     return matchesSearch && matchesDepartment;
-
   });
 
   /* SORTING */
 
   if (sortValue === "name_asc") {
-
     filteredDepartments.sort(function (a, b) {
-
       return a.deptName.localeCompare(b.deptName);
-
     });
-
-  }
-
-  else if (sortValue === "name_desc") {
-
+  } else if (sortValue === "name_desc") {
     filteredDepartments.sort(function (a, b) {
-
       return b.deptName.localeCompare(a.deptName);
-
     });
-
-  }
-
-  else if (sortValue === "employees_high") {
-
+  } else if (sortValue === "employees_high") {
     filteredDepartments.sort(function (a, b) {
-
       return b.employeeCount - a.employeeCount;
-
     });
-
-  }
-
-  else if (sortValue === "employees_low") {
-
+  } else if (sortValue === "employees_low") {
     filteredDepartments.sort(function (a, b) {
-
       return a.employeeCount - b.employeeCount;
-
     });
-
   }
 
   renderDepartments(filteredDepartments);
-
 }
 
 /* =========================================
@@ -203,9 +158,7 @@ function applyFilters() {
 ========================================= */
 
 $("#searchDept").on("keyup", function () {
-
   applyFilters();
-
 });
 
 /* =========================================
@@ -213,9 +166,7 @@ $("#searchDept").on("keyup", function () {
 ========================================= */
 
 $("#deptType").on("change", function () {
-
   applyFilters();
-
 });
 
 /* =========================================
@@ -223,9 +174,7 @@ $("#deptType").on("change", function () {
 ========================================= */
 
 $("#sortDept").on("change", function () {
-
   applyFilters();
-
 });
 
 /* =========================================
@@ -233,7 +182,6 @@ $("#sortDept").on("change", function () {
 ========================================= */
 
 $("#resetBtn").on("click", function () {
-
   $("#searchDept").val("");
 
   $("#deptType").val("");
@@ -241,7 +189,6 @@ $("#resetBtn").on("click", function () {
   $("#sortDept").val("");
 
   applyFilters();
-
 });
 
 /* =========================================
@@ -249,29 +196,20 @@ $("#resetBtn").on("click", function () {
 ========================================= */
 
 function renderStats() {
+  const departments = getDepartments();
 
-  let departments = getDepartments();
-
-  $("#totalDepartments").text(
-    departments.length
-  );
+  $("#totalDepartments").text(departments.length);
 
   const technical = departments.filter(function (dept) {
-
     return dept.type === "Technical";
-
   }).length;
 
   const administrative = departments.filter(function (dept) {
-
     return dept.type === "Administrative";
-
   }).length;
 
   const creative = departments.filter(function (dept) {
-
     return dept.type === "Creative";
-
   }).length;
 
   $("#technicalCount").text(technical);
@@ -279,5 +217,4 @@ function renderStats() {
   $("#administrativeCount").text(administrative);
 
   $("#creativeCount").text(creative);
-
 }
